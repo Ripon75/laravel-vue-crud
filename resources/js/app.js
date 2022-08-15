@@ -1,10 +1,20 @@
 require('./bootstrap');
 
 import { createApp } from 'vue'
-import HelloWorld from './components/Welcome'
+// import HelloWorld from './components/Welcome'
+// import ProductIndex from './components/products/index.vue';
 
-const app = createApp({})
+import router from './router.js';
+import App from './layouts/App.vue';
 
-app.component('hello-world', HelloWorld)
 
-app.mount('#app')
+// const app = createApp(App)
+
+createApp(App)
+    .use(router)
+    .mount('#app')
+
+// app.component('hello-world', HelloWorld)
+// app.component('product-index', ProductIndex)
+
+// app.use(router).mount('#app')
