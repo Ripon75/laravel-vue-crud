@@ -1,20 +1,18 @@
 require('./bootstrap');
 
 import { createApp } from 'vue'
-// import HelloWorld from './components/Welcome'
-// import ProductIndex from './components/products/index.vue';
+
+import EmployeeIndex from './components/employees/Index'
+import EmployeeCreate from './components/employees/Create'
+import EmployeeEdit from './components/employees/Edit'
 
 import router from './router.js';
 import App from './layouts/App.vue';
 
+const app = createApp(App)
 
-// const app = createApp(App)
+app.component('employee-index', EmployeeIndex)
+app.component('employee-create', EmployeeCreate)
+app.component('employee-edit', EmployeeEdit)
 
-createApp(App)
-    .use(router)
-    .mount('#app')
-
-// app.component('hello-world', HelloWorld)
-// app.component('product-index', ProductIndex)
-
-// app.use(router).mount('#app')
+app.use(router).mount('#app')

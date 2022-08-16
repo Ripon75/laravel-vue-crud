@@ -1,30 +1,25 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import home from './pages/Home.vue';
-import login from './pages/Login.vue';
-import register from './pages/Register.vue';
-import ProductIndex from './components/products/Index.vue';
+
+import EmployeeIndex from './components/employees/Index';
+import EmployeeCreate from './components/employees/Create';
+import EmployeeEdit from './components/employees/Edit';
 
 const routes = [
     {
-        path: '/',
-        name: 'Home',
-        component: home
+        path: '/employees',
+        name: 'EmployeeIndex',
+        component: EmployeeIndex
     },
     {
-        path: '/login',
-        name: 'Login',
-        component: login
+        path: '/employees/create',
+        name: 'EmployeeCreate',
+        component: EmployeeCreate
     },
-    {
-        path: '/register',
-        name: 'Register',
-        component: register
-    },
-    {
-        path: '/products',
-        name: 'ProductIndex',
-        component: ProductIndex
-    }
+    // {
+    //     path: '/employees:id',
+    //     name: 'EmployeeEdit',
+    //     component: EmployeeEdit
+    // }
 ];
 
 const router = createRouter({

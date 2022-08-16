@@ -1,10 +1,9 @@
 <template>
     <div>
         <div>
-            <router-link :to="{name: 'Home'}">Home</router-link> |
-            <router-link :to="{name: 'Login'}">Login</router-link> |
-            <router-link :to="{name: 'Register'}">Register</router-link> |
-            <router-link :to="{name: 'ProductIndex'}">Products</router-link>
+            <router-link :to="{name: 'EmployeeIndex'}">Index</router-link> |
+            <router-link :to="{name: 'EmployeeCreate'}">Create</router-link> |
+            <!-- <router-link :to="{name: 'EmployeeEdit'}">Register</router-link> -->
         </div>
         <router-view></router-view>
     </div>
