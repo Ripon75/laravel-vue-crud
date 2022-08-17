@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'country_code',
+        'name'
+    ];
+
+    protected $casts = [
+        'country_code' => 'string',
+        'name'         => 'string',
+        'created_at'   => 'datetime:Y-m-d H:i:s',
+        'updated_at'   => 'datetime:Y-m-d H:i:s'
+    ];
 }
