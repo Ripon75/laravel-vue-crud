@@ -7,7 +7,7 @@
                 </router-link>
             </div>
             <div class="card-body">
-                <form>
+                <form @submit.prevent="storeEmployee">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
@@ -31,10 +31,10 @@
                             <div class="mb-3">
                                 <label class="form-label">Department</label>
                                 <select class="form-select" v-model="form.department_id">
-                                    <option selected>Select department</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="" selected>Select department</option>
+                                    <option v-for="department in departments" :key="department.id" :value="department.id">
+                                        {{ department.name }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -52,11 +52,11 @@
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">State</label>
-                                <select class="form-select" v-model="form.state_id">
-                                    <option selected>Select state</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="form-select" v-model="form.state_id" @change="getCities()">
+                                    <option value="" selected>Select state</option>
+                                    <option v-for="state in states" :key="state.id" :value="state.id">
+                                        {{ state.name }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -64,27 +64,29 @@
                             <div class="mb-3">
                                 <label class="form-label">City</label>
                                 <select class="form-select" v-model="form.city_id">
-                                    <option selected>Select city</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="" selected>Select city</option>
+                                    <option v-for="city in cities" :key="city.id" :value="city.id">
+                                        {{ city.name }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Date of barth</label>
-                                <Datepicker v-model="form.dob"></Datepicker>
+                                <Datepicker v-model="form.birthdate"></Datepicker>
                             </div>
                         </div>
                         <div class="col-md-6">
                              <div class="mb-3">
                                 <label class="form-label">Hire Date</label>
-                                <Datepicker v-model="form.hire_date"></Datepicker>
+                                <Datepicker v-model="form.date_hire">
+
+                                </Datepicker>
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button @click="dateFormate()" type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>
         </div>
@@ -94,6 +96,8 @@
 <script>
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
+import moment from 'moment';
+
 export default {
     components: {
         Datepicker
@@ -112,17 +116,18 @@ export default {
                 'state_id': '',
                 'city_id': '',
                 'country_id': '',
-                'dob': '',
-                'hire_date': ''
+                'birthdate': '',
+                'date_hire': ''
             }
         }
     },
     created() {
         this.getCountries();
+        this.getDepartment()
     },
     methods: {
         getCountries() {
-            axios.get('/api/employee/countries')
+            axios.get('/api/employees/countries')
             .then((response) => {
                 this.countries = response.data.result;
             })
@@ -131,13 +136,59 @@ export default {
             });
         },
         getStates() {
-            axios.get('/api/employee/'+this.form.country_id + '/states')
+            axios.get('/api/employees/'+this.form.country_id + '/states')
             .then((response) => {
-                console.log(response);
+                this.states = response.data.result;
             })
             .catch((error) => {
                 console.log(error);
             });
+        },
+        getCities() {
+            console.log('ok');
+            axios.get('/api/employees/'+this.form.state_id + '/cities')
+            .then((response) => {
+                this.cities = response.data.result;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        getDepartment() {
+            axios.get('/api/employees/departments')
+            .then((response) => {
+                this.departments = response.data.result;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        storeEmployee() {
+            axios.post('api/employees', this.form)
+            .then((response) => {
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        formatDate(value) {
+            if (value) {
+                return moment(String(value)).format('YYYY-MM-DD');
+            }
+        },
+        dateFormate() {
+            var dob = this.form.birthdate;
+            var hireDate = this.form.date_hire;
+            if (dob) {
+                var formattedDate = this.formatDate(dob);
+                this.form.birthdate = formattedDate;
+
+            }
+            if (hireDate) {
+                this.formatDate(dob);
+                var formattedDate = this.formatDate(hireDate);
+                this.form.date_hire = formattedDate;
+            }
         }
     },
 }
