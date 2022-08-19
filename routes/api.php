@@ -21,6 +21,10 @@ Route::prefix('employees')->group(function() {
     Route::get('/departments',      [employeeDataController::class, 'department']);
 });
 
-Route::get('/employees',  [EmployeeController::class, 'index']);
-Route::post('/employees', [EmployeeController::class, 'store']);
+Route::get('/employees',               [EmployeeController::class, 'index']);
+Route::post('/employees',              [EmployeeController::class, 'store']);
+Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy']);
+Route::get('/employees/{employee}',    [EmployeeController::class, 'show']);
+Route::post('/employees/{id}',         [EmployeeController::class, 'update']);
+
 

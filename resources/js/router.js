@@ -15,11 +15,11 @@ const routes = [
         name: 'EmployeeCreate',
         component: EmployeeCreate
     },
-    // {
-    //     path: '/employees:id',
-    //     name: 'EmployeeEdit',
-    //     component: EmployeeEdit
-    // }
+    {
+        path: '/employees:id',
+        name: 'EmployeeEdit',
+        component: EmployeeEdit
+    }
 ];
 
 const router = createRouter({

@@ -164,8 +164,9 @@ export default {
             });
         },
         storeEmployee() {
-            axios.post('api/employees', this.form)
+            axios.post('/api/employees', this.form)
             .then((response) => {
+                this.$router.push({name: 'EmployeeIndex'});
             })
             .catch((error) => {
                 console.log(error);
