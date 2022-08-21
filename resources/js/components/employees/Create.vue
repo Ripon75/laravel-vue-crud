@@ -145,7 +145,6 @@ export default {
             });
         },
         getCities() {
-            console.log('ok');
             axios.get('/api/employees/'+this.form.state_id + '/cities')
             .then((response) => {
                 this.cities = response.data.result;

@@ -6,6 +6,14 @@
                     {{ message }}
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="d-flex form-control">
+                        <input v-model="search_key" class="form-control me-2" type="search" placeholder="Type here">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
             <div class="card-header">
                 Employee List
                 <router-link class="btn btn-success btn-sm float-end" :to="{name: 'EmployeeCreate'}">Create</router-link>
@@ -61,7 +69,13 @@ export default {
         return {
             employees: [],
             showMessage: false,
-            message: ''
+            message: '',
+            search_key: null
+        }
+    },
+    watch : {
+        search_key() {
+            this.getEmployees();
         }
     },
     created() {
@@ -69,9 +83,14 @@ export default {
     },
     methods: {
         getEmployees() {
-            axios.get('/api/employees')
-            .then(response => {
-                this.employees = response.data.result.data;
+            axios.get('/api/employees', {
+                // search product
+                params: {
+                    search_key: this.search_key
+                }
+            })
+            .then(res => {
+                this.employees = res.data.result.data;
             })
             .catch(error => {
                 console.log(error);

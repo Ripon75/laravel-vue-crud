@@ -12,9 +12,16 @@ use App\Utility\Util;
 
 class EmployeeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $employees = Employee::paginate(50);
+        $searchKey = $request->input('search_key', null);
+        $employees = new Employee();
+
+        if ($searchKey) {
+            $employees = $employees->where('name', 'like', "%{$searchKey}%");
+        }
+
+        $employees = $employees->paginate(50);
 
         $employees = new EmployeeCollection($employees);
 

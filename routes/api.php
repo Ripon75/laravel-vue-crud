@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\employeeDataController;
@@ -27,4 +28,4 @@ Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy']);
 Route::get('/employees/{employee}',    [EmployeeController::class, 'show']);
 Route::post('/employees/{id}',         [EmployeeController::class, 'update']);
 
-
+Route::post('/images/create', [ImageController::class, 'store']);
