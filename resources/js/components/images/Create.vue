@@ -13,6 +13,9 @@
                             <div class="mb-3">
                                 <label class="form-label">Upload file</label>
                                 <input @change="onFileChange" type="file" class="form-control">
+                                <div class="" v-if="img_src">
+                                <img :src="imgPreview" alt="Image" style="width:100px; heigth:80px;" class="mt-2">
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
@@ -27,33 +30,35 @@
 export default {
     data() {
         return {
-            'img_src': ''
+            'img_src': '',
+            'imgPreview': null
         }
     },
 
     methods: {
         onFileChange(event) {
             this.img_src = event.target.files[0];
+            let reader = new FileReader();
+            reader.addEventListener('load', () => {
+                this.imgPreview = reader.result;
+            });
+            if (this.img_src) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.img_src.name)) {
+                    reader.readAsDataURL(this.img_src);
+                }
+            }
         },
         formSubmit() {
-                let formData = new FormData();
+            let formData = new FormData();
 
-                formData.append('img_src', this.img_src);
- 
-                axios.post('/api/images/create', formData)
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-                // axios.post('/api/employees', this.form)
-                // .then((response) => {
-                //     this.$router.push({name: 'EmployeeIndex'});
-                // })
-                // .catch((error) => {
-                //     console.log(error);
-                // });
+            formData.append('img_src', this.img_src);
+
+            axios.post('/api/images/create', formData)
+            .then((res) => {
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
     }
 }
