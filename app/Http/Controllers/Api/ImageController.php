@@ -12,7 +12,13 @@ class ImageController extends Controller
 {
     public function index()
     {
-        //
+        $image = Image::get();
+
+        if (count($image) > 0) {
+            return Util::response($image, 'All images', 200);
+        } else {
+            return Util::response(null, 'Image not found', 201);
+        }
     }
 
     public function store(Request $request)
@@ -25,7 +31,7 @@ class ImageController extends Controller
             $file = $request->file('img_src', null);
             $ext  = $file->extension();
             $name = time().'.'.$ext;
-            $file->storeAs('public/images', $name);
+            $file->move('public/images', $name);
 
             $imageObj = new Image();
             $imageObj->img_src = $name;
@@ -50,6 +56,14 @@ class ImageController extends Controller
 
     public function destroy($id)
     {
-        //
+        $image = Image::find($id);
+
+        $res = $image->delete();
+
+        if ($res) {
+            return Util::response($image, 'Image deleted successfully', 200);
+        } else {
+            return Util::response(null, 'Image is not delete', 201);
+        }
     }
 }

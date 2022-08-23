@@ -28,4 +28,6 @@ Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy']);
 Route::get('/employees/{employee}',    [EmployeeController::class, 'show']);
 Route::post('/employees/{id}',         [EmployeeController::class, 'update']);
 
+Route::get('/images',         [ImageController::class, 'index']);
 Route::post('/images/create', [ImageController::class, 'store']);
+Route::delete('/images/{id}', [ImageController::class, 'destroy']);

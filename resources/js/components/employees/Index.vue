@@ -48,7 +48,9 @@
                             <td>{{ formatDate(employee.birthdate) }}</td>
                             <td>{{ employee.date_hire }}</td>
                             <td>
-                                <router-link :to="{name: 'EmployeeEdit', params: {id: employee.id}}" class="btn btn-success btn-sm">
+                                <router-link 
+                                    :to="{name: 'EmployeeEdit', params: {id: employee.id}}"
+                                    class="btn btn-success btn-sm">
                                     Edit
                                 </router-link>
                                 <button class="btn btn-danger btn-sm m-2" @click="deleteEmployee(employee.id)">
@@ -115,6 +117,3 @@ export default {
     },
 }
 </script>
-<style>
-    
-</style>
