@@ -11,6 +11,10 @@
                     <div class ="card-body">
                         <form @submit.prevent="formSubmit" enctype="multipart/form-data">
                             <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" v-model="name">
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Upload file</label>
                                 <input @change="onFileChange" type="file" class="form-control">
                                 <div class="" v-if="img_src">
@@ -30,8 +34,9 @@
 export default {
     data() {
         return {
-            'img_src': '',
-            'imgPreview': null
+            name: '',
+            img_src: '',
+            imgPreview: null
         }
     },
 
@@ -51,10 +56,11 @@ export default {
         formSubmit() {
             let formData = new FormData();
 
+            formData.append('name', this.name);
             formData.append('img_src', this.img_src);
-
-            axios.post('/api/images/create', formData)
+            axios.post('/api/images', formData)
             .then((res) => {
+                this.$router.push({name: 'ImageIndex'})
             })
             .catch((error) => {
                 console.log(error);

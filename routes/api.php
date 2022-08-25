@@ -29,5 +29,7 @@ Route::get('/employees/{employee}',    [EmployeeController::class, 'show']);
 Route::post('/employees/{id}',         [EmployeeController::class, 'update']);
 
 Route::get('/images',         [ImageController::class, 'index']);
-Route::post('/images/create', [ImageController::class, 'store']);
+Route::post('/images',        [ImageController::class, 'store']);
 Route::delete('/images/{id}', [ImageController::class, 'destroy']);
+Route::get('/images/{id}',    [ImageController::class, 'show']);
+Route::post('/images/{id}',   [ImageController::class, 'update']);

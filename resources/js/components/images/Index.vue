@@ -9,7 +9,7 @@
                         </div>
                     </div>
                     <div class="card-header">
-                        Employee List
+                        Image List
                         <router-link class="btn btn-success btn-sm float-end" :to="{name: 'ImageCreate'}">
                             Create
                         </router-link>
@@ -19,6 +19,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
+                                    <th scope="col">Nmae</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -26,6 +27,7 @@
                             <tbody>
                                 <tr v-for="(data, index) in result" :key="data.id">
                                     <td>{{ index + 1 }}</td>
+                                    <td>{{ data.name }}</td>
                                     <td>
                                         <img :src="`public/images/${data.img_src}`" style="width:100px; height:80px;">
                                     </td>
