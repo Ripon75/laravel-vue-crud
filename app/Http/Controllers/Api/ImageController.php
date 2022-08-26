@@ -25,12 +25,14 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'img_src' => ['required']
+            'name'    => ['required'],
+            'img_src' => ['required', 'image']
         ]);
 
-        if ($validator->stopOnFirstFailure()) {
+        if ($validator->stopOnFirstFailure()->fails()) {
             return Util::error(null, $validator->errors(), 201);
         }
+
 
         $name = $request->input('name');
 
@@ -66,13 +68,13 @@ class ImageController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'img_src' => ['required']
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'name' => ['required']
+        ]);
 
-        // if ($validator->stopOnFirstFailure()) {
-        //     return Util::error(null, $validator->errors(), 201);
-        // }
+        if ($validator->stopOnFirstFailure()) {
+            return Util::error(null, $validator->errors(), 201);
+        }
         $name = $request->input('name', null);
 
         $image = Image::find($id);

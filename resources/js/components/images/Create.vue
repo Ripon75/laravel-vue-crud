@@ -12,12 +12,12 @@
                         <form @submit.prevent="formSubmit" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control" v-model="name">
+                                <input type="text" class="form-control" v-model="form.name">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Upload file</label>
                                 <input @change="onFileChange" type="file" class="form-control">
-                                <div class="" v-if="img_src">
+                                <div class="" v-if="form.img_src">
                                 <img :src="imgPreview" alt="Image" style="width:100px; heigth:80px;" class="mt-2">
                                 </div>
                             </div>
@@ -34,30 +34,32 @@
 export default {
     data() {
         return {
-            name: '',
-            img_src: '',
+            form: {
+                name: '',
+                img_src: ''
+            },
             imgPreview: null
         }
     },
 
     methods: {
         onFileChange(event) {
-            this.img_src = event.target.files[0];
+            this.form.img_src = event.target.files[0];
             let reader = new FileReader();
             reader.addEventListener('load', () => {
                 this.imgPreview = reader.result;
             });
-            if (this.img_src) {
-                if (/\.(jpe?g|png|gif)$/i.test(this.img_src.name)) {
-                    reader.readAsDataURL(this.img_src);
+            if (this.form.img_src) {
+                if (/\.(jpe?g|png|gif)$/i.test(this.form.img_src.name)) {
+                    reader.readAsDataURL(this.form.img_src);
                 }
             }
         },
         formSubmit() {
             let formData = new FormData();
 
-            formData.append('name', this.name);
-            formData.append('img_src', this.img_src);
+            formData.append('name', this.form.name);
+            formData.append('img_src', this.form.img_src);
             axios.post('/api/images', formData)
             .then((res) => {
                 this.$router.push({name: 'ImageIndex'})

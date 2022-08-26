@@ -20056,8 +20056,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      name: '',
-      img_src: '',
+      form: {
+        name: '',
+        img_src: ''
+      },
       imgPreview: null
     };
   },
@@ -20065,15 +20067,15 @@ __webpack_require__.r(__webpack_exports__);
     onFileChange: function onFileChange(event) {
       var _this = this;
 
-      this.img_src = event.target.files[0];
+      this.form.img_src = event.target.files[0];
       var reader = new FileReader();
       reader.addEventListener('load', function () {
         _this.imgPreview = reader.result;
       });
 
-      if (this.img_src) {
-        if (/\.(jpe?g|png|gif)$/i.test(this.img_src.name)) {
-          reader.readAsDataURL(this.img_src);
+      if (this.form.img_src) {
+        if (/\.(jpe?g|png|gif)$/i.test(this.form.img_src.name)) {
+          reader.readAsDataURL(this.form.img_src);
         }
       }
     },
@@ -20081,8 +20083,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var formData = new FormData();
-      formData.append('name', this.name);
-      formData.append('img_src', this.img_src);
+      formData.append('name', this.form.name);
+      formData.append('img_src', this.form.img_src);
       axios.post('/api/images', formData).then(function (res) {
         _this2.$router.push({
           name: 'ImageIndex'
@@ -21149,11 +21151,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     "class": "form-control",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.name = $event;
+      return $data.form.name = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     onChange: _cache[1] || (_cache[1] = function () {
       return $options.onFileChange && $options.onFileChange.apply($options, arguments);
     }),
@@ -21161,7 +21163,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control"
   }, null, 32
   /* HYDRATE_EVENTS */
-  ), $data.img_src ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  ), $data.form.img_src ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.imgPreview,
     alt: "Image",
     style: {
