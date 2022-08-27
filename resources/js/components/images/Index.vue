@@ -64,18 +64,28 @@ export default {
             axios.get('/api/images')
             .then(res => {
                 this.result = res.data.result;
+                // if (res.data.success) {
+                //     this.$toast.success(res.data.msg);
+                // } else {
+                //     this.$toast.error(res.data.msg);
+                // }
             })
             .catch(err => {
-                console.log(err);
+                this.$toast.error(err);
             });
         },
         deleteImage(id) {
             axios.delete('api/images/'+id)
             .then(res => {
+                if (res.data.success) {
+                    this.$toast.success(res.data.msg);
+                } else {
+                    this.$toast.error(res.data.msg);
+                }
                 this.getImage();
             })
             .catch(err => {
-                console.log(err);
+                this.$toast.error(err);
             })
         }
     },

@@ -54,7 +54,7 @@ export default {
                 this.form = res.data.result;
             })
             .catch(err => {
-                console.log(err);
+                this.$toast.error(err);
             });
         },
         onFileChange(event) {
@@ -77,10 +77,15 @@ export default {
 
             axios.post('/api/images/' + this.$route.params.id, formData)
             .then((res) => {
-                this.$router.push({name: 'ImageIndex'})
+                this.$router.push({name: 'ImageIndex'});
+                if (res.data.success) {
+                    this.$toast.success(res.data.msg);
+                } else {
+                    this.$toast.error(res.data.msg);
+                }
             })
             .catch((error) => {
-                console.log(error);
+                this.$toast.error(err);
             });
         }
     }

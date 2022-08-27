@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 import { createApp } from 'vue'
+import Toaster from "@meforma/vue-toaster";
 
 import EmployeeIndex from './components/employees/Index'
 import EmployeeCreate from './components/employees/Create'
@@ -15,4 +16,8 @@ app.component('employee-index', EmployeeIndex)
 app.component('employee-create', EmployeeCreate)
 app.component('employee-edit', EmployeeEdit)
 
-app.use(router).mount('#app')
+app.use(router)
+app.use(Toaster, {
+    position: "top" 
+})
+app.mount('#app')

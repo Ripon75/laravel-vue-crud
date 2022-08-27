@@ -62,10 +62,15 @@ export default {
             formData.append('img_src', this.form.img_src);
             axios.post('/api/images', formData)
             .then((res) => {
-                this.$router.push({name: 'ImageIndex'})
+                if (res.data.code == 200) {
+                    this.$toast.success(res.data.msg);
+                    this.$router.push({name: 'ImageIndex'});
+                } else {
+                    this.$toast.error(res.data.msg);
+                }
             })
-            .catch((error) => {
-                console.log(error);
+            .catch((err) => {
+                this.$toast.error(err);
             });
         }
     }

@@ -16,9 +16,9 @@ class ImageController extends Controller
         $image = Image::get();
 
         if (count($image) > 0) {
-            return Util::response($image, 'All images', 200);
+            return Util::response($image, 'All product', 200);
         } else {
-            return Util::error(null, 'Image not found', 201);
+            return Util::error(null, 'Product not found', 201);
         }
     }
 
@@ -72,7 +72,7 @@ class ImageController extends Controller
             'name' => ['required']
         ]);
 
-        if ($validator->stopOnFirstFailure()) {
+        if ($validator->stopOnFirstFailure()->fails()) {
             return Util::error(null, $validator->errors(), 201);
         }
         $name = $request->input('name', null);
