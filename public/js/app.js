@@ -21800,25 +21800,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _meforma_vue_toaster__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @meforma/vue-toaster */ "./node_modules/@meforma/vue-toaster/src/index.js");
-/* harmony import */ var _components_employees_Index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/employees/Index */ "./resources/js/components/employees/Index.vue");
-/* harmony import */ var _components_employees_Create__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/employees/Create */ "./resources/js/components/employees/Create.vue");
-/* harmony import */ var _components_employees_Edit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/employees/Edit */ "./resources/js/components/employees/Edit.vue");
-/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
-/* harmony import */ var _layouts_App_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./layouts/App.vue */ "./resources/js/layouts/App.vue");
+/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
+/* harmony import */ var _layouts_App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/App.vue */ "./resources/js/layouts/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
 
-
-
-
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_layouts_App_vue__WEBPACK_IMPORTED_MODULE_6__["default"]);
-app.component('employee-index', _components_employees_Index__WEBPACK_IMPORTED_MODULE_2__["default"]);
-app.component('employee-create', _components_employees_Create__WEBPACK_IMPORTED_MODULE_3__["default"]);
-app.component('employee-edit', _components_employees_Edit__WEBPACK_IMPORTED_MODULE_4__["default"]);
-app.use(_router_js__WEBPACK_IMPORTED_MODULE_5__["default"]);
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_layouts_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.use(_router_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.use(_meforma_vue_toaster__WEBPACK_IMPORTED_MODULE_1__["default"], {
   position: "top"
 });
