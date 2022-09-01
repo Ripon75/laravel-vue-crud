@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-2">
+            <div class="col-md-10 offset-1">
                 <div class="card">
                     <div v-if="showMessage">
                         <div class="alert alert-success">
@@ -50,6 +50,21 @@
     </div>
 </template>
 <script>
+import Swal from 'sweetalert2'
+
+ 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 export default {
     data() {
         return {
@@ -64,29 +79,48 @@ export default {
             axios.get('/api/images')
             .then(res => {
                 this.result = res.data.result;
-                // if (res.data.success) {
-                //     this.$toast.success(res.data.msg);
-                // } else {
-                //     this.$toast.error(res.data.msg);
-                // }
             })
             .catch(err => {
-                this.$toast.error(err);
+                console.log(err);
             });
         },
         deleteImage(id) {
-            axios.delete('api/images/'+id)
-            .then(res => {
-                if (res.data.success) {
-                    this.$toast.success(res.data.msg);
-                } else {
-                    this.$toast.error(res.data.msg);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    // Delete action start
+                    axios.delete('api/images/'+id)
+                    .then(res => {
+                        if (res.data.success) {
+                            // this.$toast.success(res.data.msg);
+                            Toast.fire({
+                              icon: 'success',
+                              title: res.data.msg
+                            })
+                        } else {
+                            Toast.fire({
+                              icon: 'success',
+                              title: res.data.msg
+                            })
+                        }
+                        this.getImage();
+                    })
+                    .catch(err => {
+                        Toast.fire({
+                            icon: 'success',
+                            title: res.data.msg
+                        })
+                    });
+                    // Delete action end
                 }
-                this.getImage();
             })
-            .catch(err => {
-                this.$toast.error(err);
-            });
         }
     },
 }
