@@ -11,12 +11,21 @@ use File;
 
 class ImageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $image = Image::get();
+        $searchKey = $request->input('search_key', null);
+        $paginate  = config('crud.crud.paginate.default');
 
-        if (count($image) > 0) {
-            return Util::response($image, 'All product', 200);
+        $imageObj = new Image();
+
+        if ($searchKey) {
+            $imageObj = Image::where('name', $searchKey);
+        }
+
+        $imageObj = $imageObj->paginate($paginate);
+
+        if (count($imageObj) > 0) {
+            return Util::response($imageObj, 'All product', 200);
         } else {
             return Util::error(null, 'Product not found', 201);
         }

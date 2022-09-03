@@ -31,7 +31,7 @@
                                     <th scope="col">City</th>
                                     <th scope="col">Zip code</th>
                                     <th scope="col">Birth date</th>
-                                    <th scope="col">Hire date</th>
+                                    <!-- <th scope="col">Hire date</th> -->
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -48,7 +48,7 @@
                                     <td v-else>NULL</td>
                                     <td>{{ employee.zip_code }}</td>
                                     <td>{{ formatDate(employee.birthdate) }}</td>
-                                    <td>{{ employee.date_hire }}</td>
+                                    <!-- <td>{{ employee.date_hire }}</td> -->
                                     <td>
                                         <router-link 
                                             :to="{name: 'EmployeeEdit', params: {id: employee.id}}"

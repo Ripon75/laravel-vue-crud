@@ -8,6 +8,15 @@
                             {{ message }}
                         </div>
                     </div>
+                    <!-- Search part -->
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="d-flex form-control">
+                                <input v-model="search_key" class="form-control me-2" type="search" placeholder="Type here">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-header">
                         Image List
                         <router-link class="btn btn-success btn-sm float-end" :to="{name: 'ImageCreate'}">
