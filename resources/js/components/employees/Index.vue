@@ -3,11 +3,6 @@
         <div class="row">
             <div class="col-md-10 offset-1">
                 <div class="card">
-                    <div v-if="showMessage">
-                        <div class="alert alert-success">
-                            {{ message }}
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="d-flex form-control">
@@ -36,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="employee in employees" :key="employee.id">
+                                <tr v-for="employee in employees.data" :key="employee.id">
                                     <td>{{ employee.name }}</td>
                                     <td v-if="employee.department">{{ employee.department.name }}</td>
                                     <td v-else>NULL</td>
@@ -63,6 +58,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <Pagination :data="employees" @pagination-change-page="getEmployees" />
                 </div>
             </div>
         </div>
@@ -70,12 +66,28 @@
 </template>
 <script>
 import moment from 'moment';
+import LaravelVuePagination from 'laravel-vue-pagination';
+import Swal from 'sweetalert2'
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 export default {
+    components: {
+        'Pagination': LaravelVuePagination,
+    },
     data() {
         return {
-            employees: [],
-            showMessage: false,
-            message: '',
+            employees: {},
             search_key: null
         }
     },
@@ -88,15 +100,16 @@ export default {
         this.getEmployees();
     },
     methods: {
-        getEmployees() {
-            axios.get('/api/employees', {
+        getEmployees(page = 1) {
+            axios.get('/api/employees?page=' + page, {
                 // search product
                 params: {
                     search_key: this.search_key
                 }
             })
             .then(res => {
-                this.employees = res.data.result.data;
+
+                this.employees = res.data.result;
             })
             .catch(error => {
                 console.log(error);
@@ -108,14 +121,33 @@ export default {
             }
         },
         deleteEmployee(id) {
-            axios.delete('/api/employees/' + id)
-            .then(response => {
-                this.getEmployees();
-                this.showMessage = true;
-                this.message = response.data.message;
-            })
-            .catch(error => {
-                console.log(error);
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    // Delete action start
+                    axios.delete('/api/employees/' + id)
+                    .then(res => {
+                        this.getEmployees();
+                        Toast.fire({
+                              icon: 'success',
+                              title: res.data.msg
+                        })
+                    })
+                    .catch(err => {
+                        Toast.fire({
+                              icon: 'success',
+                              title: err
+                        })
+                    })
+                    // Delete action end
+                }
             })
         }
     },

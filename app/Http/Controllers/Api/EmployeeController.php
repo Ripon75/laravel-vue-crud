@@ -15,20 +15,24 @@ class EmployeeController extends Controller
     public function index(Request $request)
     {
         $searchKey = $request->input('search_key', null);
+        $paginate  = config('crud.paginate.default');
+
         $employees = new Employee();
+
+        $employees = $employees->with(['department', 'country', 'state', 'city']);
 
         if ($searchKey) {
             $employees = $employees->where('name', 'like', "%{$searchKey}%");
         }
 
-        $employees = $employees->paginate(50);
-
-        $employees = new EmployeeCollection($employees);
+        $employees = $employees->paginate($paginate);
+        
+        // $employees = new EmployeeCollection($employees);
 
         if (count($employees) > 0) {
-            return Util::response($employees, 'All employee list', 200);
+            return Util::response($employees, 'All employee list');
         } else {
-            return Util::error(null, 'No employee forund', 201);
+            return Util::error(null, 'No employee forund');
         }
     }
 

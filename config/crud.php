@@ -1,9 +1,7 @@
 <?php
 
 return [
-    'crud' => [
-        'paginate' => [
-            'default' => 50
-        ]
+    'paginate' => [
+        'default' => 5
     ]
 ];

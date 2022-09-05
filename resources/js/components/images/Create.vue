@@ -65,8 +65,6 @@ export default {
                 if (res.data.code == 200) {
                     this.$toast.success(res.data.msg);
                     this.$router.push({name: 'ImageIndex'});
-                } else {
-                    this.$toast.error(res.data.msg);
                 }
             })
             .catch((err) => {

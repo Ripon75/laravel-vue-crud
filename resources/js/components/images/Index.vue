@@ -3,11 +3,6 @@
         <div class="row">
             <div class="col-md-10 offset-1">
                 <div class="card">
-                    <div v-if="showMessage">
-                        <div class="alert alert-success">
-                            {{ message }}
-                        </div>
-                    </div>
                     <!-- Search part -->
                     <div class="row">
                         <div class="col-md-4">
@@ -34,7 +29,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(data, index) in result" :key="data.id">
+                                <tr v-for="(data, index) in result.data" :key="data.id">
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ data.name }}</td>
                                     <td>
@@ -53,6 +48,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <Pagination :data="result" @pagination-change-page="getImage" />
                 </div>
             </div>
         </div>
@@ -60,8 +56,8 @@
 </template>
 <script>
 import Swal from 'sweetalert2'
+import LaravelVuePagination from 'laravel-vue-pagination';
 
- 
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -75,9 +71,13 @@ const Toast = Swal.mixin({
 })
 
 export default {
+    components: {
+        'Pagination': LaravelVuePagination,
+    },
     data() {
         return {
-            'result': ''
+            result: {},
+            search_key: ''
         }
     },
     mounted() {
@@ -108,7 +108,6 @@ export default {
                     axios.delete('api/images/'+id)
                     .then(res => {
                         if (res.data.success) {
-                            // this.$toast.success(res.data.msg);
                             Toast.fire({
                               icon: 'success',
                               title: res.data.msg
@@ -124,7 +123,7 @@ export default {
                     .catch(err => {
                         Toast.fire({
                             icon: 'success',
-                            title: res.data.msg
+                            title: err
                         })
                     });
                     // Delete action end

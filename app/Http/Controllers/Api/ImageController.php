@@ -14,7 +14,7 @@ class ImageController extends Controller
     public function index(Request $request)
     {
         $searchKey = $request->input('search_key', null);
-        $paginate  = config('crud.crud.paginate.default');
+        $paginate  = config('crud.paginate.default');
 
         $imageObj = new Image();
 
