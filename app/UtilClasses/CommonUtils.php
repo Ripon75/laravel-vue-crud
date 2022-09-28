@@ -1,17 +1,11 @@
 <?php
 
-namespace App\Utility;
+namespace App\UtilClasses;
 
-class Util
+class CommonUtils
 {
     public static function response($result, $message, $code = 200)
     {
-        // return response()->json([
-        //     'result'  => $data,
-        //     'msg'     => $message,
-        //     'code'    => $code,
-        //     'success' => true
-        // ]);
         $response = [
             'success' => true,
             'result'  => $result,
@@ -21,15 +15,8 @@ class Util
         return response()->json($response, 200);
     }
 
-    public static function error($result, $message, $code = 202)
+    public static function error($result, $message, $code = 201)
     {
-        // return response()->json([
-        //     'result'  => $data,
-        //     'msg'     => $message,
-        //     'code'    => $code,
-        //     'success' => false
-        // ]);
-
         $response = [
             'success' => false,
             'result'  => $result,

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Utility\Util;
+use App\UtilClass\CommonUtils;
 use App\Models\Image;
 use File;
 
@@ -25,9 +25,9 @@ class ImageController extends Controller
         $imageObj = $imageObj->paginate($paginate);
 
         if (count($imageObj) > 0) {
-            return Util::response($imageObj, 'All product', 200);
+            return CommonUtils::response($imageObj, 'All product', 200);
         } else {
-            return Util::error(null, 'Product not found', 201);
+            return CommonUtils::error(null, 'Product not found', 201);
         }
     }
 
@@ -39,7 +39,7 @@ class ImageController extends Controller
         ]);
 
         if ($validator->stopOnFirstFailure()->fails()) {
-            return Util::error(null, $validator->errors(), 201);
+            return CommonUtils::error(null, $validator->errors(), 201);
         }
 
 
@@ -59,9 +59,9 @@ class ImageController extends Controller
         }
         $res = $imageObj->save();
         if ($res) {
-            return Util::response(null, 'File upload successfully', 200);
+            return CommonUtils::response(null, 'File upload successfully', 200);
         } else {
-            return Util::error(null, 'File is not uploaded', 201);
+            return CommonUtils::error(null, 'File is not uploaded', 201);
         }
     }
 
@@ -69,9 +69,9 @@ class ImageController extends Controller
     {
         $data = Image::find($id);
         if ($data) {
-            return Util::response($data, 'Single data', 200);
+            return CommonUtils::response($data, 'Single data', 200);
         } else {
-            return Util::error(null, 'No data found', 201);
+            return CommonUtils::error(null, 'No data found', 201);
         }
     }
 
@@ -82,7 +82,7 @@ class ImageController extends Controller
         ]);
 
         if ($validator->stopOnFirstFailure()->fails()) {
-            return Util::error(null, $validator->errors(), 201);
+            return CommonUtils::error(null, $validator->errors(), 201);
         }
         $name = $request->input('name', null);
 
@@ -106,9 +106,9 @@ class ImageController extends Controller
         }
         $res = $image->save();
         if ($res) {
-            return Util::response($image, 'File upated successfully', 200);
+            return CommonUtils::response($image, 'File upated successfully', 200);
         } else {
-            return Util::error(null, 'File is not updated', 201);
+            return CommonUtils::error(null, 'File is not updated', 201);
         }
     }
 
@@ -119,9 +119,9 @@ class ImageController extends Controller
         $res = $image->delete();
 
         if ($res) {
-            return Util::response($image, 'Image deleted successfully', 200);
+            return CommonUtils::response($image, 'Image deleted successfully', 200);
         } else {
-            return Util::response(null, 'Image is not delete', 201);
+            return CommonUtils::response(null, 'Image is not delete', 201);
         }
     }
 }

@@ -8,7 +8,7 @@ use App\Http\Resources\EmployeeCollection;
 use App\Http\Resources\EmployeeResource;
 use Illuminate\Http\Request;
 use App\Models\Employee;
-use App\Utility\Util;
+use App\UtilClass\CommonUtils;
 
 class EmployeeController extends Controller
 {
@@ -30,9 +30,9 @@ class EmployeeController extends Controller
         // $employees = new EmployeeCollection($employees);
 
         if (count($employees) > 0) {
-            return Util::response($employees, 'All employee list');
+            return CommonUtils::response($employees, 'All employee list');
         } else {
-            return Util::error(null, 'No employee forund');
+            return CommonUtils::error(null, 'No employee forund');
         }
     }
 
@@ -48,7 +48,7 @@ class EmployeeController extends Controller
         ]);
  
         if ($validator->stopOnFirstFailure()->fails()) {
-            return Util::error($validator->errors(), 'Validation error', 201);
+            return CommonUtils::error($validator->errors(), 'Validation error', 201);
         }
 
         $name         = $request->input('name', null);
@@ -74,9 +74,9 @@ class EmployeeController extends Controller
         $employeeObj->date_hire     = $dateHire;
         $res = $employeeObj->save();
         if ($res) {
-            return Util::response($employeeObj, 'Employee create successfully', 200);
+            return CommonUtils::response($employeeObj, 'Employee create successfully', 200);
         } else {
-            return Util::error(null, 'No country forund', 201);
+            return CommonUtils::error(null, 'No country forund', 201);
         }
     }
 
@@ -85,9 +85,9 @@ class EmployeeController extends Controller
         $employe = new EmployeeResource($employee);
 
         if ($employee) {
-            return Util::response($employe, 'Employee single view', 200);
+            return CommonUtils::response($employe, 'Employee single view', 200);
         } else {
-            return Util::error(null, 'Employee not found', 201);
+            return CommonUtils::error(null, 'Employee not found', 201);
         }
     }
 
@@ -102,7 +102,7 @@ class EmployeeController extends Controller
         ]);
  
         if ($validator->stopOnFirstFailure()->fails()) {
-            return Util::error($validator->errors(), 'Validation error', 201);
+            return CommonUtils::error($validator->errors(), 'Validation error', 201);
         }
 
         $name         = $request->input('name', null);
@@ -128,9 +128,9 @@ class EmployeeController extends Controller
         $employee->date_hire     = $dateHire;
         $res = $employee->save();
         if ($res) {
-            return Util::response($employee, 'Employee updated successfully', 200);
+            return CommonUtils::response($employee, 'Employee updated successfully', 200);
         } else {
-            return Util::error(null, 'Employee can not update', 201);
+            return CommonUtils::error(null, 'Employee can not update', 201);
         }
     }
 
@@ -139,9 +139,9 @@ class EmployeeController extends Controller
         $res = $employee->delete();
 
         if ($res) {
-            return Util::response(null, 'Employee deleted successfully', 200);
+            return CommonUtils::response(null, 'Employee deleted successfully', 200);
         } else {
-            return Util::error(null, 'Employee is not deletes', 201);
+            return CommonUtils::error(null, 'Employee is not deletes', 201);
         }
     }
 }
