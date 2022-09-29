@@ -42,6 +42,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
 
+        Route::prefix('callback')
+                ->name('callback.')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/callback.php'));
+
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')

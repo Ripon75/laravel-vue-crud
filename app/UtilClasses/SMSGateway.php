@@ -6,13 +6,17 @@ use Illuminate\Support\Facades\Http;
 
 class SMSGateway
 {
+    // for DSTBD
+    // private $endpoint;
+    // private $username;
+    // private $password;
+    // private $source;
+
+    // for REVE
     private $endpoint;
-    private $username;
-    private $password;
-    private $source;
-    // for two
     private $apiKey;
     private $secretKey;
+    private $source;
 
     function __construct()
     {
@@ -34,7 +38,7 @@ class SMSGateway
         $this->source    = config('smsgateway.source');
     }
 
-    // for DSTBD
+    // sms send by DSTBD
     public function sendByDSTBD($phoneNumber, $message)
     {
         $response = Http::get($this->endpoint, [
@@ -50,7 +54,7 @@ class SMSGateway
         return $response;
     }
 
-    // for REVE
+    // sms send by REVE
     public function sendByREVE($phoneNumber, $message)
     {
         $response = Http::get($this->endpoint, [
