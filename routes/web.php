@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\UtilClasses\SMSGateway;
+use App\UtilClasses\SMSGateway;
 use App\UtilClasses\SSLGateway;
 
 // sms gateway test route
-// Route::get('/sms/send', function() {
-//     $smsGateway = new SMSGateway();
-//     return $smsGateway->sendByREVE('01764997485', 'I Love you jan');
-// });
+Route::get('/sms/send', function() {
+    $smsGateway = new SMSGateway();
+    // return $smsGateway->sendByREVE('01764997485', 'Hello');
+});
 
 // payment gateway test route
 Route::get('/ssl/payment', function() {
@@ -30,7 +30,6 @@ Route::get('/ssl/payment', function() {
     } else {
         return redirect()->route('callback.payment_ssl',['fail']);
     }
-
 });
 
 Route::get('{any}', function () {
