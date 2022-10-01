@@ -12,10 +12,11 @@ return [
     ],
 
     "bkash" => [
-        "endpoint"   => env("BKASH_ENDPOINT"),
-        "username"   => env("BKASH_USERNAME"),
-        "password"   => env("BKASH_PASSWORD"),
-        "app_key"    => env("BKASH_APP_KEY"),
-        "app_secret" => env("BKASH_APP_SECRET")
+        "endpoint"     => env("BKASH_ENDPOINT"),
+        "username"     => env("BKASH_USERNAME"),
+        "password"     => env("BKASH_PASSWORD"),
+        "app_key"      => env("BKASH_APP_KEY"),
+        "app_secret"   => env("BKASH_APP_SECRET"),
+        "callback_url" => env("BKASH_CALLBACK")
     ]
 ];
