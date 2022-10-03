@@ -4,7 +4,7 @@ namespace App\UtilClasses;
 
 use Illuminate\Support\Facades\Http;
 
-class BKASH
+class Bkash
 {
     private $endpoint;
     private $username;
@@ -68,8 +68,10 @@ class BKASH
     {
         $url = "{$this->endpoint}/create";
 
+        $headers = $this->getHeader();
+
         $body = [
-            "mode"                  => "0011",
+            "mode"                  => "0000",
             "amount"                => $amount,
             "currency"              => "BDT",
             "intent"                => "Sale",
@@ -78,7 +80,91 @@ class BKASH
             "callbackURL"           => $this->callbackURL
         ];
 
+
+        $response = Http::withHeaders($headers)->post($url, $body);
+        $response = json_decode($response, true);
+
+        return $response;
+    }
+
+    public function executePayment($paymentID)
+    {
+        $url = "{$this->endpoint}/execute";
+
         $headers = $this->getHeader();
+
+        $body = [
+            'paymentID' => $paymentID
+        ];
+
+        $response = Http::withHeaders($headers)->post($url, $body);
+        $response = json_decode($response, true);
+
+        return $response;
+    }
+
+    public function queryPayment($agreementID)
+    {
+        $url = "{$this->endpoint}/agreement/status";
+
+        $headers = $this->getHeader();
+
+        $body = [
+            'agreementID' => $agreementID
+        ];
+
+        $response = Http::withHeaders($headers)->post($url, $body);
+        $response = json_decode($response, true);
+
+        return $response;
+    }
+
+    public function searchTransaction($trxID)
+    {
+        $url = "{$this->endpoint}/general/searchTransaction";
+
+        $headers = $this->getHeader();
+
+        $body = [
+            'trxID' => $trxID
+        ];
+
+        $response = Http::withHeaders($headers)->post($url, $body);
+        $response = json_decode($response, true);
+
+        return $response;
+    }
+
+    public function refundTransaction($paymentID, $amount, $trxID, $sku, $reason)
+    {
+        $url = "{$this->endpoint}/payment/refund";
+
+        $headers = $this->getHeader();
+
+        $body = [
+            'paymentID' => $paymentID,
+            'amount'    => $amount,
+            'trxID'     => $trxID,
+            'sku'       => $sku,
+            'reason'    => $reason
+        ];
+
+        $response = Http::withHeaders($headers)->post($url, $body);
+        $response = json_decode($response, true);
+
+        return $response;
+    }
+
+    public function refundStatus($paymentID, $trxID)
+    {
+        $url = "{$this->endpoint}/payment/refund";
+
+        $headers = $this->getHeader();
+
+        $body = [
+            'paymentID' => $paymentID,
+            'trxID'     => $trxID
+        ];
 
         $response = Http::withHeaders($headers)->post($url, $body);
         $response = json_decode($response, true);

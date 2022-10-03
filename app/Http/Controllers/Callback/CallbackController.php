@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Callback;
 
 use App\Models\Order;
+use App\UtilClasses\Bkash;
 use Illuminate\Http\Request;
 use App\Models\PaymentTransaction;
 use App\Http\Controllers\Controller;
@@ -68,5 +69,25 @@ class CallbackController extends Controller
             // return failed view
             return 'Failed';
         }
+    }
+
+    public function bkashCallback(Request $request)
+    {
+        $paymentID  = $request->input('paymentID');
+        $status     = $request->input('status');
+        $apiVersion = $request->input('apiVersion');
+
+        if ($status === 'failure') {
+            return 'failed';
+        }
+        if ($status === 'cancel') {
+            return 'Cancel';
+        }
+
+        $bKashObj = new Bkash();
+
+        $response = $bKashObj->executePayment($paymentID);
+
+        return $response;
     }
 }

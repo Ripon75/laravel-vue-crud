@@ -1,6 +1,6 @@
 <?php
 
-use App\UtilClasses\BKASH;
+use App\UtilClasses\Bkash;
 use App\UtilClasses\SMSGateway;
 use App\UtilClasses\SSLGateway;
 use Illuminate\Support\Facades\Route;
@@ -29,15 +29,38 @@ Route::get('/ssl/payment', function() {
         // Redirect outside of my project route
         return redirect()->away($redirectGatewayURL);
     } else {
-        return redirect()->route('callback.payment_ssl',['fail']);
+        return redirect()->route('callback.ssl.payment',['fail']);
     }
 });
 
 // bKash payment gateway tesy
-Route::get('bkash/payment', function() {
-    $bakash = new BKASH();
+// get token
+Route::get('/bkash/payment/token', function() {
+    $bakash = new Bkash();
 
     return $bakash->getToken();
+});
+
+// create payment
+Route::get('/bkash/payment/create', function() {
+    $bakash = new Bkash();
+
+    $response = $bakash->createPayment('100', 1, '01764997485');
+
+    if ($response['statusCode'] === '0000') {
+        $bkashURL = $response['bkashURL'];
+
+        return redirect()->away($bkashURL);
+    } else {
+        return redirect()->route('callback.bkash.payment');
+    }
+});
+
+// create execute
+Route::get('/bkash/payment/execute', function() {
+    $bakash = new Bkash();
+
+    return $bakash->executePayment();
 });
 
 Route::get('{any}', function () {
