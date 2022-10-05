@@ -64,22 +64,44 @@ class Bkash
         return $response;
     }
 
-    public function createPayment($amount, $invoiceNumber, $payerReference)
+    // public function createPayment($amount, $invoiceNumber, $payerReference)
+    // {
+    //     $url = "{$this->endpoint}/create";
+
+    //     $headers = $this->getHeader();
+
+    //     $body = [
+    //         "mode"                  => "0011",
+    //         "amount"                => $amount,
+    //         "currency"              => "BDT",
+    //         "intent"                => "Sale",
+    //         "payerReference"        => $payerReference,
+    //         "merchantInvoiceNumber" => $invoiceNumber,
+    //         "callbackURL"           => $this->callbackURL
+    //     ];
+
+
+    //     $response = Http::withHeaders($headers)->post($url, $body);
+    //     $response = json_decode($response, true);
+
+    //     return $response;
+    // }
+
+    public function createPayment($amount,$invoiceNumber,$payerReference)
     {
+        $body = [
+            'mode'                  => '0011',
+            'amount'                => $amount,
+            'currency'              => 'BDT',
+            'intent'                => 'sale',
+            'payerReference'        => $payerReference,
+            'merchantInvoiceNumber' => $invoiceNumber,
+            'callbackURL'           => $this->callbackURL,
+        ];
+
         $url = "{$this->endpoint}/create";
 
         $headers = $this->getHeader();
-
-        $body = [
-            "mode"                  => "0000",
-            "amount"                => $amount,
-            "currency"              => "BDT",
-            "intent"                => "Sale",
-            "payerReference"        => $payerReference,
-            "merchantInvoiceNumber" => $invoiceNumber,
-            "callbackURL"           => $this->callbackURL
-        ];
-
 
         $response = Http::withHeaders($headers)->post($url, $body);
         $response = json_decode($response, true);
@@ -177,10 +199,10 @@ class Bkash
         $token = "{$this->token['token_type']} {$this->token['id_token']}";
 
         $headers = [
-            'Accept'        => 'application/json',
-            'Content-Type'  => 'application/json',
-            'Authorization' => $token,
-            'X-APP-Key'     => $this->appKey,
+            "Accept" => "application/json",
+            "Content-Type"  => "application/json",
+            "Authorization" => $token,
+            "X-APP-Key"     => $this->appKey
         ];
 
         return $headers;

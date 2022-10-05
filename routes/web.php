@@ -52,7 +52,7 @@ Route::get('/bkash/payment/create', function() {
 
         return redirect()->away($bkashURL);
     } else {
-        return redirect()->route('callback.bkash.payment');
+        return "Failed";
     }
 });
 

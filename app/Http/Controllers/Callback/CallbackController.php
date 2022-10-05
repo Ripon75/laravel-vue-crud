@@ -44,7 +44,7 @@ class CallbackController extends Controller
         //         $paymentTrxObj->status = "success";
         //         $orderObj->is_paid     = true;
         //     } elseif ($status === "FAILED"){
-        //         $paymentTrxObj->status = "failed";
+        //         $paymenTtrxObj->status = "failed";
         //     } else {
         //         $paymentTrxObj->status = "cancel";
         //     }
@@ -86,8 +86,43 @@ class CallbackController extends Controller
 
         $bKashObj = new Bkash();
 
-        $response = $bKashObj->executePayment($paymentID);
+        $res = $bKashObj->executePayment($paymentID);
 
-        return $response;
+        $statusCode    = $res['statusCode'];
+        $statusMessage = $res['statusMessage'];
+
+       if ($statusCode === '0000') {
+            // my local transaction id
+            $trxId   = $res['merchantInvoiceNumber'];
+            // payment gateway transaction id
+            $pgtrxID = $res['trxID'];
+
+            // $paymentTrxObj = PaymentTransaction::find($tranId);
+
+            // if ($paymentTrxObj) {
+            //     $orderId = $paymentTrxObj->order_id;
+            //     $paymentTrxObj->payment_id = $paymentID;
+            //     $paymentTrxObj->pgtrxid   = $pgtrxID;
+
+            //     $orderObj = Order::find($orderId);
+            //     if ($statusCode === '0000') {
+            //         $type = 'success';
+            //         $paymentTrxObj->status = 'success';
+            //         $orderObj->is_paid = true;
+            //     } else {
+            //         $type = 'failed';
+            //         $paymentTrxObj->status = 'failed';
+            //     }
+
+            //     $paymentTrxObj->save();
+            //     $orderObj->save();
+
+            //     return view($type, $statusMessage);
+            // } else {
+            //     return view('fail', 'PaymentTransaction not found.');
+            // }
+        }
+
+        // return view('fail', $statusMessage);
     }
 }
