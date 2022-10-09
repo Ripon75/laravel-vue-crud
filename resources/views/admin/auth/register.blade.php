@@ -14,7 +14,7 @@
                                 </div>
                             @endif
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Register Here</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Admin Register</h1>
                             </div>
                             <form class="user" action="{{ route('admin.register.store') }}" method="POST">
                                 @csrf

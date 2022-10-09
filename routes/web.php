@@ -4,7 +4,7 @@ use App\UtilClasses\Bkash;
 use App\UtilClasses\SMSGateway;
 use App\UtilClasses\SSLGateway;
 use Illuminate\Support\Facades\Route;
-use App\Http\controllers\Admin\AuthController;
+use App\Http\controllers\Frontend\AuthController;
 
 // sms gateway test route
 Route::get('/sms/send', function() {
@@ -64,10 +64,7 @@ Route::get('/bkash/payment/execute', function() {
     return $bakash->executePayment();
 });
 
-// Route::prefix('admin', function () {
-//     Route::get('/register',  [AuthController::class, 'register'])->name('register');
-//     Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
-// });
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('{any}', function () {
     return view('welcome');

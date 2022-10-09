@@ -6,22 +6,13 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function getAdmin()
     {
         return view('admin.auth.index');
-    }
-
-    public function login()
-    {
-        return view('admin.auth.login');
-    }
-
-    public function loginStore(Request $request)
-    {
-        return $request->all();
     }
 
     public function register()
@@ -57,8 +48,40 @@ class AuthController extends Controller
         }
     }
 
+    public function login()
+    {
+        return view('admin.auth.login');
+    }
+
+    public function loginStore(Request $request)
+    {
+        $request->validate([
+            'email'    => ['required'],
+            'password' => ['required']
+        ]);
+
+        $email      = $request->input('email', null);
+        $password   = $request->input('password', null);
+        $isRemember = $request->input('is_remember', null);
+        $isRemember = $isRemember ? true : false;
+
+        if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password], $isRemember)) {
+            return redirect()->route('admin.dashboard');
+        } else {
+            return back()->with('message', 'Invalid credential');
+        }
+    }
+
     public function forgotPassword()
     {
         return view('admin.auth.forgot-password');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+
+        return redirect()->route('admin.login');
     }
 }
