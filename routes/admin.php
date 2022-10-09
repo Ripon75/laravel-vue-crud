@@ -15,7 +15,6 @@ Route::get('/forgot/password', [AuthController::class, 'forgotPassword'])->name(
 // Check auth
 Route::middleware(['auth:admin'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/admins',    [AuthController::class, 'getAdmin'])->name('index');
+    Route::get('/admins',    [AuthController::class, 'index'])->name('index');
     Route::get('/logout',    [AuthController::class, 'logout'])->name('logout');
 });
-

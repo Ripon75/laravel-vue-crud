@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    public function getAdmin()
+    public function index()
     {
         return view('admin.auth.index');
     }
