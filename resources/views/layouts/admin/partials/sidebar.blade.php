@@ -36,7 +36,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Components:</h6>
                 <a class="collapse-item" href="{{ route('admin.index') }}">Admins</a>
-                <a class="collapse-item" href="{{ route('admin.roles.create') }}">Roles</a>
+                <a class="collapse-item" href="{{ route('admin.roles.index') }}">Roles</a>
+                <a class="collapse-item" href="{{ route('admin.roles.create') }}">Role Create</a>
                 <a class="collapse-item" href="{{ route('admin.permissions.index') }}">Permissions</a>
                 <a class="collapse-item" href="{{ route('admin.register') }}">Register</a>
             </div>
