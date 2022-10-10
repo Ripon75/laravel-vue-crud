@@ -12,7 +12,11 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('admin.auth.index');
+        $admins = Admin::get();
+
+        return view('admin.auth.index', [
+            'admins' => $admins
+        ]);
     }
 
     public function register()

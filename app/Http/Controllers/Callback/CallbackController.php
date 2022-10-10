@@ -102,19 +102,13 @@ class CallbackController extends Controller
             // if ($paymentTrxObj) {
             //     $orderId = $paymentTrxObj->order_id;
             //     $paymentTrxObj->payment_id = $paymentID;
-            //     $paymentTrxObj->pgtrxid   = $pgtrxID;
+            //     $paymentTrxObj->pgtrxid = $pgtrxID;
+            //     $paymentTrxObj->status = 'success';
+            //     $paymentTrxObj->save();
 
             //     $orderObj = Order::find($orderId);
-            //     if ($statusCode === '0000') {
-            //         $type = 'success';
-            //         $paymentTrxObj->status = 'success';
-            //         $orderObj->is_paid = true;
-            //     } else {
-            //         $type = 'failed';
-            //         $paymentTrxObj->status = 'failed';
-            //     }
-
-            //     $paymentTrxObj->save();
+            //     $type = 'success';
+            //     $orderObj->is_paid = true;
             //     $orderObj->save();
 
             //     return view($type, $statusMessage);
