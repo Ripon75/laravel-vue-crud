@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary float-right mb-3">Submit</button>
+                            <button class="btn btn-primary float-right mb-3">Update</button>
                         </div>
                     </form>
                 </div>

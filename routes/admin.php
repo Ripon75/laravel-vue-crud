@@ -20,6 +20,6 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
     Route::get('/logout',    [AuthController::class, 'logout'])->name('logout');
     // Role route
-    Route::resource('roles', RoleController::class);
+    Route::resource('roles',       RoleController::class);
     Route::resource('permissions', PermissionController::class);
 });
