@@ -4,44 +4,55 @@
     <div class="">
         <div class="row">
             <div class="col-md-8 offset-2">
+                @if(Session::has('message'))
+                    <div class="alert alert-danger mt-8">
+                        {{ Session::get('message') }}
+                    </div>
+                @endif
                 <div class="card">
-                    <div class="card-header">
-                        Featured
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">Name</label>
-                                    <input type="text" class="form-control" name="name">
-                                    @error('name')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Email address</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Email address</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Email address</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
+                    <div class="card-header d-flex flex-row justify-content-between">
+                        <div>
+                            <h5>Create Permission</h1>
                         </div>
-                        <button class="btn btn-primary float-right">Submit</button>
+                        <div>
+                            <a href="{{ route('admin.permissions.index') }}" class="btn btn-primary btn-sm float-right">All Permissions</a>
+                        </div>
                     </div>
+                    <form action="{{ route('admin.permissions.store') }}" method="POST">
+                        @csrf
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="display_name">
+                                        @error('display_name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">Description</label>
+                                        <input type="text" class="form-control" name="description">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary float-right mb-3">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $("document").ready(function(){
+            setTimeout(function(){
+            $("div.alert").remove();
+            }, 4000 );
+        });
+    </script>
+@endpush

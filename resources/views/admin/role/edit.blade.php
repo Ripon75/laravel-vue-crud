@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header d-flex flex-row justify-content-between">
                         <div>
-                            <h5>Create Role</h1>
+                            <h5>Edit Role</h1>
                         </div>
                         <div>
                             <a href="{{ route('admin.roles.index') }}" class="btn btn-primary btn-sm float-right">All Roles</a>

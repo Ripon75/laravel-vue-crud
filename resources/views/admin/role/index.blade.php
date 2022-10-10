@@ -5,11 +5,11 @@
 @endsection
 
 @section('content')
-    <table id="admins_table" class="display">
+    <table id="roles_table" class="display">
         <thead>
             <tr>
                 <th>SL</th>
-                <th>Namw</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Action</th>
             </tr>
@@ -42,7 +42,7 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
-            $('#admins_table').DataTable();
+            $('#roles_table').DataTable();
         } );
     </script>
 @endpush
