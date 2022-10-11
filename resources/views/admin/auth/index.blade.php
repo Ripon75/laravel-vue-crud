@@ -12,6 +12,7 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,9 @@
                     <td>{{ $admin->username }}</td>
                     <td>{{ $admin->email }}</td>
                     <td>{{ $admin->phone_number }}</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" href="{{ route('admin.edit', $admin->id) }}">Edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

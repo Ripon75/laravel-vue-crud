@@ -14,14 +14,14 @@
                                 </div>
                             @endif
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Admin Register</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Admin Edit</h1>
                             </div>
-                            <form class="user" action="{{ route('admin.register.store') }}" method="POST">
+                            <form class="user" action="{{ route('admin.update', $admin->id) }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label class="ml-3">Username</label>
                                     <input type="text" class="form-control form-control-user"
-                                        name="username" value="{{ old('username') }}" placeholder="Userame">
+                                        name="username" value="{{ $admin->username }}">
                                    @error('username')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -29,7 +29,7 @@
                                 <div class="form-group">
                                     <label class="ml-3">Email</label>
                                     <input type="text" class="form-control form-control-user"
-                                        name="email" value="{{ old('email') }}" placeholder="Email Address">
+                                        name="email" value="{{ $admin->email }}">
                                     @error('email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label class="ml-3">Phone Number</label>
                                     <input type="text" class="form-control form-control-user"
-                                        name="phone_number" value="{{ old('phone_number') }}" placeholder="Phone Number">
+                                        name="phone_number" value="{{ $admin->phone_number }}">
                                     @error('phone_number')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -63,7 +63,8 @@
                                     <select class="form-control form-select-lg mb-3 rounded-pill" name="role_id">
                                         <option value="">Select</option>
                                         @foreach ($roles as $role)
-                                            <option class="p-2" value="{{ $role->id }}">
+                                            <option class="p-2" value="{{ $role->id }}"
+                                                {{ $role->id === $adminRoleID ? 'selected' : '' }}>
                                                 {{ $role->display_name }}
                                             </option>
                                         @endforeach
@@ -73,14 +74,8 @@
                                     @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Register
+                                    Update
                                 </button>
-                                {{-- <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a> --}}
                             </form>
                             <hr>
                             <div class="text-center">
