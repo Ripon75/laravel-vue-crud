@@ -23,16 +23,17 @@
                                     <form class="user" action="{{ route('admin.login.store') }}" method="post">
                                         @csrf
                                         <div class="form-group">
+                                            <label class="ml-3">Email</label>
                                             <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address" value="{{ old('email') }}" name="email">
                                             @error('email')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
+                                            <label class="ml-3">Password</label>
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password" name="password">
+                                                placeholder="Password" name="password">
                                             @error('password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

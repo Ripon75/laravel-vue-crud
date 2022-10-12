@@ -23,7 +23,12 @@
                     <td>{{ $admin->email }}</td>
                     <td>{{ $admin->phone_number }}</td>
                     <td>
-                        <a class="btn btn-success btn-sm" href="{{ route('admin.edit', $admin->id) }}">Edit</a>
+                        <a class="btn btn-success btn-sm" href="{{ route('admin.edit', $admin->id) }}">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="{{ route('admin.edit', $admin->id) }}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
                     </td>
                 </tr>
             @endforeach

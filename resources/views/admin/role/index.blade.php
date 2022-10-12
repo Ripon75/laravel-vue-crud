@@ -22,13 +22,17 @@
                     <td>{{ $role->description }}</td>
                     <td class="d-flex flex-row">
                         <div>
-                            <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-success btn-sm">Edit</a>
+                            <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-success btn-sm">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
                         </div>
                         <div class="ml-2">
                             <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
                         </div>
                     </td>
