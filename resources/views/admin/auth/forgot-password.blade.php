@@ -26,10 +26,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('admin.register') }}">Create an Account!</a>
+                                        <a class="small" href="{{ route('admins.register') }}">Create an Account!</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('admin.login') }}">Already have an account? Login!</a>
+                                        <a class="small" href="{{ route('admins.login') }}">Already have an account? Login!</a>
                                     </div>
                                 </div>
                             </div>

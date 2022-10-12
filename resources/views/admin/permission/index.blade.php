@@ -22,12 +22,12 @@
                     <td>{{ $permission->description }}</td>
                     <td class="d-flex flex-row">
                         <div>
-                            <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="btn btn-success btn-sm">
+                            <a href="{{ route('admins.permissions.edit', $permission->id) }}" class="btn btn-success btn-sm">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
                         </div>
                         <div class="ml-2">
-                            <form action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST">
+                            <form action="{{ route('admins.permissions.destroy', $permission->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm">

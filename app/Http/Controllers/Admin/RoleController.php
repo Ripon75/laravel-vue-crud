@@ -48,7 +48,7 @@ class RoleController extends Controller
         $res = $role->save();
         if ($res) {
             $role->syncPermissions($permissionIDs);
-            return redirect()->route('admin.roles.index')->with('message', 'Role created successfully');
+            return redirect()->route('admins.roles.index')->with('message', 'Role created successfully');
         } else {
             return back()->with('message', 'Something went to wrong');
         }
@@ -92,7 +92,7 @@ class RoleController extends Controller
         $res = $role->save();
         if ($res) {
             $role->syncPermissions($permissionIDs);
-            return redirect()->route('admin.roles.index')->with('message', 'Role updated successfully');
+            return redirect()->route('admins.roles.index')->with('message', 'Role updated successfully');
         } else {
             return back()->with('message', 'Something went to wrong');
         }

@@ -15,10 +15,10 @@
                             <h5>Create Permission</h1>
                         </div>
                         <div>
-                            <a href="{{ route('admin.permissions.index') }}" class="btn btn-primary btn-sm float-right">All Permissions</a>
+                            <a href="{{ route('admins.permissions.index') }}" class="btn btn-primary btn-sm float-right">All Permissions</a>
                         </div>
                     </div>
-                    <form action="{{ route('admin.permissions.store') }}" method="POST">
+                    <form action="{{ route('admins.permissions.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
                             <div class="row">

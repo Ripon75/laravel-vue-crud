@@ -14,16 +14,19 @@ Route::get('/forgot/password', [AuthController::class, 'forgotPassword'])->name(
 
 // Check auth
 Route::middleware(['auth:admin'])->group(function(){
-    Route::get('/dashboard',   [DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('/admins',      [AuthController::class, 'index'])->name('index');
+    Route::get('/',          [AuthController::class, 'index'])->name('index');
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
     Route::middleware(['role:admin'])->group(function() {
-        Route::get('/register',    [AuthController::class, 'register'])->name('register');
-        Route::post('/register',   [AuthController::class, 'registerStore'])->name('register.store');
-        Route::get('/admin/{id}',  [AuthController::class, 'adminEdit'])->name('edit');
-        Route::post('/admin/{id}', [AuthController::class, 'adminUpdate'])->name('update');
-        Route::get('/logout',      [AuthController::class, 'logout'])->name('logout');
+        Route::get('/register',  [AuthController::class, 'register'])->name('register');
+        Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
+        Route::get('/{id}',      [AuthController::class, 'adminEdit'])->name('edit');
+        Route::post('/destroy',  [AuthController::class, 'destroy'])->name('destroy');
+        Route::post('/{id}',     [AuthController::class, 'adminUpdate'])->name('update');
+        Route::get('/logout',    [AuthController::class, 'logout'])->name('logout');
         // Role route
-        Route::resource('roles',       RoleController::class);
+        Route::resource('roles', RoleController::class);
+        // Permission route
         Route::resource('permissions', PermissionController::class);
     });
 });

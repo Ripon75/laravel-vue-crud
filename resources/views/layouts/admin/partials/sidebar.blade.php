@@ -1,6 +1,6 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admins.dashboard') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -12,7 +12,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin.dashboard') }}">
+        <a class="nav-link" href="{{ route('admins.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -35,12 +35,12 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             @if (Auth::user())
             <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{ route('admin.index') }}">Admins</a>
-                    <a class="collapse-item" href="{{ route('admin.roles.index') }}">Roles</a>
-                    <a class="collapse-item" href="{{ route('admin.roles.create') }}">Role Create</a>
-                    <a class="collapse-item" href="{{ route('admin.permissions.index') }}">Permissions</a>
-                    <a class="collapse-item" href="{{ route('admin.permissions.create') }}">Permission Create</a>
-                    <a class="collapse-item" href="{{ route('admin.register') }}">Register</a>
+                    <a class="collapse-item" href="{{ route('admins.index') }}">Admins</a>
+                    <a class="collapse-item" href="{{ route('admins.roles.index') }}">Roles</a>
+                    <a class="collapse-item" href="{{ route('admins.roles.create') }}">Role Create</a>
+                    <a class="collapse-item" href="{{ route('admins.permissions.index') }}">Permissions</a>
+                    <a class="collapse-item" href="{{ route('admins.permissions.create') }}">Permission Create</a>
+                    <a class="collapse-item" href="{{ route('admins.register') }}">Register</a>
                 </div>
             @endif
         </div>

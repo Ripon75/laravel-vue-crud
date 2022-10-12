@@ -15,10 +15,10 @@
                             <h5>Edit Role</h1>
                         </div>
                         <div>
-                            <a href="{{ route('admin.roles.index') }}" class="btn btn-primary btn-sm float-right">All Roles</a>
+                            <a href="{{ route('admins.roles.index') }}" class="btn btn-primary btn-sm float-right">All Roles</a>
                         </div>
                     </div>
-                    <form action="{{ route('admin.roles.update', $role->id) }}" method="POST">
+                    <form action="{{ route('admins.roles.update', $role->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-body">

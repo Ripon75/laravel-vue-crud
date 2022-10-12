@@ -38,8 +38,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         Route::middleware('web')
-                ->prefix('admin')
-                ->name('admin.')
+                ->prefix('admins')
+                ->name('admins.')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/admin.php'));
 

@@ -16,7 +16,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Admin Edit</h1>
                             </div>
-                            <form class="user" action="{{ route('admin.update', $admin->id) }}" method="POST">
+                            <form class="user" action="{{ route('admins.update', $admin->id) }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label class="ml-3">Username</label>
@@ -79,10 +79,10 @@
                             </form>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="{{ route('admin.forgot.password') }}">Forgot Password?</a>
+                                <a class="small" href="{{ route('admins.forgot.password') }}">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="{{ route('admin.login') }}">Already have an account? Login!</a>
+                                <a class="small" href="{{ route('admins.login') }}">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>

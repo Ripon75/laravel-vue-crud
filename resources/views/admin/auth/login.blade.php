@@ -20,7 +20,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Admin Login</h1>
                                     </div>
-                                    <form class="user" action="{{ route('admin.login.store') }}" method="post">
+                                    <form class="user" action="{{ route('admins.login.store') }}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <label class="ml-3">Email</label>
@@ -60,10 +60,10 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('admin.forgot.password') }}">Forgot Password?</a>
+                                        <a class="small" href="{{ route('admins.forgot.password') }}">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('admin.register') }}">Create an Account!</a>
+                                        <a class="small" href="{{ route('admins.register') }}">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

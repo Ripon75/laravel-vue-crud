@@ -15,10 +15,10 @@
                             <h5>Create Role</h1>
                         </div>
                         <div>
-                            <a href="{{ route('admin.roles.index') }}" class="btn btn-primary btn-sm float-right">All Roles</a>
+                            <a href="{{ route('admins.roles.index') }}" class="btn btn-primary btn-sm float-right">All Roles</a>
                         </div>
                     </div>
-                    <form action="{{ route('admin.roles.store') }}" method="POST">
+                    <form action="{{ route('admins.roles.store') }}" method="POST">
                         @csrf
                         <div class="card-body">
                             <div class="row">
