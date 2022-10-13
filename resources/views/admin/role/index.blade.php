@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('admins.roles.create') }}" class="btn btn-primary btn-sm">
+        Add <i class="fa-solid fa-plus"></i>
+    </a>
     <table id="roles_table" class="display">
         <thead>
             <tr>
@@ -15,13 +18,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($roles as $role)
+            @foreach ($roles as $key => $role)
                 <tr>
-                    <td>{{ $role->id }}</td>
-                    <td>{{ $role->name }}</td>
+                    <td>{{ ++$key }}</td>
+                    <td>{{ $role->display_name }}</td>
                     <td>{{ $role->description }}</td>
                     <td class="d-flex flex-row">
-                        <div>
+                        <div class="ml-2">
                             <a href="{{ route('admins.roles.edit', $role->id) }}" class="btn btn-success btn-sm">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>

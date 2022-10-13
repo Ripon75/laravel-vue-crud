@@ -4,11 +4,6 @@
     <div class="">
         <div class="row">
             <div class="col-md-10 offset-1">
-                @if(Session::has('message'))
-                    <div class="alert alert-danger mt-8">
-                        {{ Session::get('message') }}
-                    </div>
-                @endif
                 <div class="card">
                     <div class="card-header d-flex flex-row justify-content-between">
                         <div>
@@ -61,13 +56,3 @@
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        $("document").ready(function(){
-            setTimeout(function(){
-            $("div.alert").remove();
-            }, 4000 );
-        });
-    </script>
-@endpush

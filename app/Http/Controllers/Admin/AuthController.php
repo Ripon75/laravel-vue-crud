@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
     public function index()
     {
+        if (!Auth::user()->ability(['admin'], ['admins-read'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
         $admins = Admin::get();
 
         return view('admin.auth.index', [
@@ -22,9 +26,10 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        if (!Auth::user()->hasRole('admin')) {
-            return back()->with('message', 'Unauthorize action');
+        if (!Auth::user()->ability(['admin'], ['admins-create'])) {
+            return back()->with('error', __('auth.unauthorized'));
         }
+
         $roles = Role::get();
 
         return view('admin.auth.register', [
@@ -66,9 +71,16 @@ class AuthController extends Controller
 
     public function adminEdit($id)
     {
+         if (!Auth::user()->ability(['admin'], ['admins-update'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
         $admin = Admin::with(['roles'])->find($id);
-        foreach ($admin->roles as $key => $role) {
-            $adminRoleID =  $role->pivot->role_id;
+        $adminRoleID = null;
+        if ($admin->roles) {
+            foreach ($admin->roles as $role) {
+                $adminRoleID =  $role->pivot->role_id;
+            }
         }
         $roles = Role::get();
 
@@ -148,5 +160,18 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         return redirect()->route('admins.login');
+    }
+
+    public function adminDestroy($id)
+    {
+        if (!Auth::user()->ability(['admin'], ['admins-delete'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
+        $admin = admin::find($id);
+
+        $admin->delete();
+
+        return back()->with('message', 'Admin deleted successfully');
     }
 }

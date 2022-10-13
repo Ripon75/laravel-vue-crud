@@ -11,4 +11,12 @@
 <!-- Page level plugins -->
 <script src="{{ asset('js/chart.js/Chart.min.js') }}"></script>
 
+<script>
+    $("document").ready(function(){
+        setTimeout(function(){
+            $("div.alert").remove();
+        }, 4000 );
+    });
+</script>
+
 @stack('scripts')

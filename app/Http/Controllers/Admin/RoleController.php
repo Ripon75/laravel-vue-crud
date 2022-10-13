@@ -6,12 +6,17 @@ use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class RoleController extends Controller
 {
     public function index()
     {
+        if (!Auth::user()->ability(['admin'], ['roles-read'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
         $roles = Role::get();
 
         return view('admin.role.index', [
@@ -21,6 +26,10 @@ class RoleController extends Controller
 
     public function create()
     {
+        if (!Auth::user()->ability(['admin'], ['roles-create'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
         $permissions = Permission::get();
 
         return view('admin.role.create', [
@@ -61,6 +70,10 @@ class RoleController extends Controller
 
     public function edit($id)
     {
+        if (!Auth::user()->ability(['admin'], ['roles-update'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
         $role          = Role::find($id);
         $permissions   = Permission::get();
         $permissionIDs = $role->permissions()->pluck('id')->toArray();
@@ -100,7 +113,11 @@ class RoleController extends Controller
 
     public function destroy($id)
     {
-        $role = Role::find($id);
+        if (!Auth::user()->ability(['admin'], ['roles-delete'])) {
+            return back()->with('error', __('auth.unauthorized'));
+        }
+
+        $role = Role::with(['users'])->find($id);
 
         $role->delete();
 

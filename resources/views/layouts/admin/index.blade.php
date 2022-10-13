@@ -33,6 +33,9 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    {{-- Flash message --}}
+                    @include('layouts.admin.partials.flash-message')
+
                     @yield('content')
 
                 </div>

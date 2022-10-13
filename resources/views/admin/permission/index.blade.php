@@ -5,6 +5,10 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('admins.permissions.create') }}"
+        class="btn btn-primary btn-sm">
+        Add <i class="fa-solid fa-plus"></i>
+    </a>
     <table id="permissions_table" class="display">
         <thead>
             <tr>
@@ -15,13 +19,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($permissions as $permission)
+            @foreach ($permissions as $key => $permission)
                 <tr>
-                    <td>{{ $permission->id }}</td>
-                    <td>{{ $permission->name }}</td>
+                    <td>{{ ++$key }}</td>
+                    <td>{{ $permission->display_name }}</td>
                     <td>{{ $permission->description }}</td>
                     <td class="d-flex flex-row">
-                        <div>
+                        <div class="ml-2">
                             <a href="{{ route('admins.permissions.edit', $permission->id) }}" class="btn btn-success btn-sm">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
@@ -48,5 +52,6 @@
         $(document).ready( function () {
             $('#permissions_table').DataTable();
         } );
+        
     </script>
 @endpush

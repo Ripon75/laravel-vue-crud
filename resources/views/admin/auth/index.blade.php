@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('admins.register') }}" class="btn btn-primary btn-sm">
+        Add <i class="fa-solid fa-user-plus"></i>
+    </a>
     <table id="admins_table" class="display">
         <thead>
             <tr>
@@ -23,7 +26,7 @@
                     <td>{{ $admin->email }}</td>
                     <td>{{ $admin->phone_number }}</td>
                     <td class="d-flex flex-row">
-                        <div>
+                        <div class="ml-2">
                             <a href="{{ route('admins.edit', $admin->id) }}" class="btn btn-success btn-sm">
                                 <i class="fa-regular fa-pen-to-square"></i>
                             </a>
@@ -31,7 +34,6 @@
                         <div class="ml-2">
                             <form action="{{ route('admins.destroy', $admin->id) }}" method="POST">
                                 @csrf
-                                @method('DELETE')
                                 <button class="btn btn-danger btn-sm">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>

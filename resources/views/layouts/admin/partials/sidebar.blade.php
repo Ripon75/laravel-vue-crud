@@ -37,10 +37,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('admins.index') }}">Admins</a>
                     <a class="collapse-item" href="{{ route('admins.roles.index') }}">Roles</a>
-                    <a class="collapse-item" href="{{ route('admins.roles.create') }}">Role Create</a>
                     <a class="collapse-item" href="{{ route('admins.permissions.index') }}">Permissions</a>
-                    <a class="collapse-item" href="{{ route('admins.permissions.create') }}">Permission Create</a>
-                    <a class="collapse-item" href="{{ route('admins.register') }}">Register</a>
                 </div>
             @endif
         </div>
