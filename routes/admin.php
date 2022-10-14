@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\Admin\RoleController;
 use App\Http\controllers\Admin\AuthController;
+use App\Http\controllers\Admin\ProductController;
 use App\Http\controllers\Admin\DashboardController;
 use App\Http\controllers\Admin\PermissionController;
 
@@ -20,6 +21,8 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::resource('roles', RoleController::class);
     // Permission route
     Route::resource('permissions', PermissionController::class);
+    // Admin route
+    Route::resource('products', ProductController::class);
     
     Route::get('/',              [AuthController::class, 'index'])->name('index');
     Route::get('/register',      [AuthController::class, 'register'])->name('register');

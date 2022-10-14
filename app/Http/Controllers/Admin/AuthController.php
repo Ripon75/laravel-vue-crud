@@ -46,7 +46,11 @@ class AuthController extends Controller
             'password'              => ['required', 'confirmed'],
             'password_confirmation' => ['required'],
             'role_id'               => ['required']
-        ]);
+        ],
+        [
+            'role_id.required' => 'Please select role'
+        ]
+        );
 
         $username        = $request->input('username', null);
         $email           = $request->input('email', null);
@@ -63,7 +67,7 @@ class AuthController extends Controller
         if ($res) {
             $roleID = $request->input('role_id', null);
             $admin->syncRoles($roleID);
-            return back()->with('message', 'Admin created successfully');
+            return redirect()->route('admins.index')->with('message', 'Admin created successfully');
         } else {
             return back()->with('message', 'Something went to wrong');
         }
