@@ -50,7 +50,7 @@ class PermissionController extends Controller
 
         $res = $permission->save();
         if ($res) {
-            return redirect()->route('admins.permissions.index')->with('message', 'Role created successfully');
+            return redirect()->route('admins.permissions.index')->with('message', 'Permission created successfully');
         } else {
             return back()->with('message', 'Something went to wrong');
         }
@@ -92,7 +92,7 @@ class PermissionController extends Controller
 
         $res = $permission->save();
         if ($res) {
-            return redirect()->route('admins.permissions.index')->with('message', 'Role updated successfully');
+            return redirect()->route('admins.permissions.index')->with('message', 'Permission updated successfully');
         } else {
             return back()->with('message', 'Something went to wrong');
         }

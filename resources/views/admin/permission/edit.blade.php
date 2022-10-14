@@ -21,7 +21,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="display_name" value="{{ $permission->name }}">
+                                        <input type="text" class="form-control" name="display_name" value="{{ $permission->display_name }}">
                                         @error('display_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
