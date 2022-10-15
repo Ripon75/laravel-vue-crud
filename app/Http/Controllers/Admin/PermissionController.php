@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\UtilClasses\CommonUtils;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -50,9 +51,9 @@ class PermissionController extends Controller
 
         $res = $permission->save();
         if ($res) {
-            return redirect()->route('admins.permissions.index')->with('message', 'Permission created successfully');
+            return redirect()->route('admins.permissions.index')->with('message', __('permission.create'));
         } else {
-            return back()->with('message', 'Something went to wrong');
+            return back()->with('message', __('common.error'));
         }
     }
 
@@ -92,9 +93,9 @@ class PermissionController extends Controller
 
         $res = $permission->save();
         if ($res) {
-            return redirect()->route('admins.permissions.index')->with('message', 'Permission updated successfully');
+            return redirect()->route('admins.permissions.index')->with('message', __('permission.update'));
         } else {
-            return back()->with('message', 'Something went to wrong');
+            return back()->with('message', __('common.error'));
         }
     }
 
@@ -106,8 +107,12 @@ class PermissionController extends Controller
 
         $permission = Permission::find($id);
 
-        $permission->delete();
-
-        return back()->with('message', 'Permission deleted successfully');
+        // $res = $permission->delete();
+        $res = true;
+        if ($res) {
+            return CommonUtils::response(null, __('permission.delete'));
+        } else {
+            return CommonUtils::error(null, __('common.error'));
+        }
     }
 }

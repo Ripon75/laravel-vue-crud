@@ -1,9 +1,5 @@
 @extends('layouts.admin.index')
 
-@section('css')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
-@endsection
-
 @section('content')
     
     <div class="card">
@@ -43,13 +39,10 @@
                                     </a>
                                 </div>
                                 <div class="ml-2">
-                                    <form action="{{ route('admins.permissions.destroy', $permission->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    <button type="button" class="btn_permission_delete btn btn-danger btn-sm"
+                                        data-permission_id="{{ $permission->id }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -60,11 +53,24 @@
     </div>
 @endsection
 
+@section('css')
+    {{-- cdn link for data table --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+@endsection
+
 @push('scripts')
+    {{-- cdn link for data table --}}
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
     <script>
         $(document).ready( function () {
+            // for data table
             $('#permissions_table').DataTable();
+            // permission delete button event
+            $(".display").on("click", '.btn_permission_delete', function(){
+                var permissionID = $(this).data('permission_id');
+                __sweetAlert('/admin/permissions/', permissionID);
+            });
         } );
     </script>
 @endpush
