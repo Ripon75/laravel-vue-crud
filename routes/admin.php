@@ -28,6 +28,6 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::get('/register',      [AuthController::class, 'register'])->name('register');
     Route::post('/register',     [AuthController::class, 'registerStore'])->name('register.store');
     Route::get('/{id}',          [AuthController::class, 'adminEdit'])->name('edit');
-    Route::post('/destroy/{id}', [AuthController::class, 'adminDestroy'])->name('destroy');
+    Route::delete('/destroy/{id}', [AuthController::class, 'adminDestroy'])->name('destroy');
     Route::post('/{id}',         [AuthController::class, 'adminUpdate'])->name('update');
 });

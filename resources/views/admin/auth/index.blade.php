@@ -43,12 +43,10 @@
                                 </a>
                             </div>
                             <div class="ml-2">
-                                <form action="{{ route('admins.destroy', $admin->id) }}" method="POST">
-                                    @csrf
-                                    <button class="btn btn-danger btn-sm">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
+                                <button class="btn_admin_delete btn btn-danger btn-sm"
+                                    data-admin_id="{{ $admin->id }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -63,7 +61,13 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
+            // for data table
             $('#admins_table').DataTable();
+            // Event with admin delete button
+            $(".display").on("click", '.btn_admin_delete', function(){
+                var adminID = $(this).data('admin_id');
+                __sweetAlert('/admin/destroy/', adminID, $(this));
+            });
         } );
     </script>
 @endpush

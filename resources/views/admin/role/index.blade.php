@@ -41,13 +41,10 @@
                                     </a>
                                 </div>
                                 <div class="ml-2">
-                                    <form action="{{ route('admins.roles.destroy', $role->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    <button type="button" class="btn_role_delete btn btn-danger btn-sm"
+                                        data-role_id="{{ $role->id }}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -62,7 +59,13 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
     <script>
         $(document).ready( function () {
+            // For data table
             $('#roles_table').DataTable();
+            // Event with delete button
+            $(".display").on("click", '.btn_role_delete', function(){
+                var permissionID = $(this).data('role_id');
+                __sweetAlert('/admin/roles/', permissionID, $(this));
+            });
         } );
     </script>
 @endpush

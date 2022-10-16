@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\UtilClasses\CommonUtils;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
@@ -57,9 +58,9 @@ class RoleController extends Controller
         $res = $role->save();
         if ($res) {
             $role->syncPermissions($permissionIDs);
-            return redirect()->route('admins.roles.index')->with('message', 'Role created successfully');
+            return redirect()->route('admins.roles.index')->with('message', __('role.create'));
         } else {
-            return back()->with('message', 'Something went to wrong');
+            return back()->with('message', __('common.error'));
         }
     }
 
@@ -105,9 +106,9 @@ class RoleController extends Controller
         $res = $role->save();
         if ($res) {
             $role->syncPermissions($permissionIDs);
-            return redirect()->route('admins.roles.index')->with('message', 'Role updated successfully');
+            return redirect()->route('admins.roles.index')->with('message', __('admin.update'));
         } else {
-            return back()->with('message', 'Something went to wrong');
+            return back()->with('message', __('common.error'));
         }
     }
 
@@ -117,10 +118,13 @@ class RoleController extends Controller
             return back()->with('error', __('auth.unauthorized'));
         }
 
-        $role = Role::with(['users'])->find($id);
+        $role = Role::find($id);
 
-        $role->delete();
-
-        return back()->with('message', 'Role deleted successfully');
+        $res = $role->delete();
+        if ($res) {
+            return CommonUtils::response(null, __('role.delete'));
+        } else {
+            return CommonUtils::error(null, __('common.error'));
+        }
     }
 }

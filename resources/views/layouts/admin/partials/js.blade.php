@@ -26,7 +26,7 @@
     });
 
     // sweet alert
-    function __sweetAlert(endpoint, id) {
+    function __sweetAlert(endpoint, id, btn) {
         Swal.fire({
             title: 'Are you sure?',
             icon: 'warning',
@@ -55,9 +55,7 @@
                             icon: 'success',
                             title: res.data.msg
                         })
-                        setTimeout(function() {
-                            location.reload();
-                        }, 3000)
+                        btn.parent().parent().parent().remove();
                     }
                 })
                 .catch(err => {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use App\UtilClasses\CommonUtils;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
@@ -67,9 +68,9 @@ class AuthController extends Controller
         if ($res) {
             $roleID = $request->input('role_id', null);
             $admin->syncRoles($roleID);
-            return redirect()->route('admins.index')->with('message', 'Admin created successfully');
+            return redirect()->route('admins.index')->with('message', __('admin.create'));
         } else {
-            return back()->with('message', 'Something went to wrong');
+            return back()->with('message', __('common.error'));
         }
     }
 
@@ -123,9 +124,9 @@ class AuthController extends Controller
         if ($res) {
             $roleID = $request->input('role_id', null);
             $admin->roles()->sync($roleID);
-            return back()->with('message', 'Admin Updated successfully');
+            return back()->with('message', __('admin.update'));
         } else {
-            return back()->with('message', 'Something went to wrong');
+            return back()->with('message', __('common.error'));
         }
     }
 
@@ -174,8 +175,11 @@ class AuthController extends Controller
 
         $admin = admin::find($id);
 
-        $admin->delete();
-
-        return back()->with('message', 'Admin deleted successfully');
+        $res = $admin->delete();
+        if ($res) {
+            return CommonUtils::response(null, __('admin.delete'));
+        } else {
+            return CommonUtils::error(null, __('common.error'));
+        }
     }
 }

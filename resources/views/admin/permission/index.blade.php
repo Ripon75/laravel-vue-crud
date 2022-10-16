@@ -69,7 +69,7 @@
             // permission delete button event
             $(".display").on("click", '.btn_permission_delete', function(){
                 var permissionID = $(this).data('permission_id');
-                __sweetAlert('/admin/permissions/', permissionID);
+                __sweetAlert('/admin/permissions/', permissionID, $(this));
             });
         } );
     </script>

@@ -107,8 +107,7 @@ class PermissionController extends Controller
 
         $permission = Permission::find($id);
 
-        // $res = $permission->delete();
-        $res = true;
+        $res = $permission->delete();
         if ($res) {
             return CommonUtils::response(null, __('permission.delete'));
         } else {
