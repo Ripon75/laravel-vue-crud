@@ -14,13 +14,13 @@ return [
     'roles_structure' => [
         'admin' => [
             'users'       => 'c,r,u,d',
-            'payments'    => 'c,r,u,d',
             'roles'       => 'c,r,u,d',
-            'permissions' => 'c,r,u,d'
+            'permissions' => 'c,r,u,d',
+            'products'    => 'c,r,u,d'
         ],
         'user' => [
-            'users'   => 'c,r,u,d',
-            'profile' => 'r,u'
+            'users'    => 'c,r,u,d',
+            'products' => 'r,u'
         ]
     ],
 

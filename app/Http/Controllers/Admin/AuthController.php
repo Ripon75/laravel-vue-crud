@@ -150,7 +150,7 @@ class AuthController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password], $isRemember)) {
             return redirect()->route('admins.dashboard');
         } else {
-            return back()->with('message', 'Invalid credential');
+            return back()->with('error', 'Invalid credential');
         }
     }
 

@@ -12,11 +12,6 @@
                             {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
                             <div class="col-lg-6 offset-3">
                                 <div class="p-5">
-                                    @if(Session::has('message'))
-                                        <div class="alert alert-danger mt-8">
-                                            {{ Session::get('message') }}
-                                        </div>
-                                    @endif
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Admin Login</h1>
                                     </div>

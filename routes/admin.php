@@ -24,10 +24,10 @@ Route::middleware(['auth:admin'])->group(function(){
     // Admin route
     Route::resource('products', ProductController::class);
     
-    Route::get('/',              [AuthController::class, 'index'])->name('index');
-    Route::get('/register',      [AuthController::class, 'register'])->name('register');
-    Route::post('/register',     [AuthController::class, 'registerStore'])->name('register.store');
-    Route::get('/{id}',          [AuthController::class, 'adminEdit'])->name('edit');
+    Route::get('/',                [AuthController::class, 'index'])->name('index');
+    Route::get('/register',        [AuthController::class, 'register'])->name('register');
+    Route::post('/register',       [AuthController::class, 'registerStore'])->name('register.store');
+    Route::get('/{id}',            [AuthController::class, 'adminEdit'])->name('edit');
     Route::delete('/destroy/{id}', [AuthController::class, 'adminDestroy'])->name('destroy');
-    Route::post('/{id}',         [AuthController::class, 'adminUpdate'])->name('update');
+    Route::put('/{id}',            [AuthController::class, 'adminUpdate'])->name('update');
 });
