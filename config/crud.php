@@ -2,6 +2,7 @@
 
 return [
     'paginate' => [
-        'default' => 50
+        'default' => 10,
+        'max'     => 100
     ]
 ];

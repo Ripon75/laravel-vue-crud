@@ -6,10 +6,10 @@
         <div class="card-header">
             <div class="d-flex justify-content-between">
                 <div>
-                    <h4>All Permission</h4>
+                    <h4>All Product</h4>
                 </div>
                 <div class="">
-                    <a href="{{ route('admins.permissions.create') }}"
+                    <a href="{{ route('admins.products.create') }}"
                         class="btn btn-primary btn-sm">
                         Create <i class="fa-solid fa-plus"></i>
                     </a>
@@ -17,12 +17,18 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="products_table" class="display">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>SL</th>
                         <th>Name</th>
-                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Brand</th>
+                        <th>MRP</th>
+                        <th>Selling Price</th>
+                        <th>Vat</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -30,8 +36,14 @@
                     @foreach ($products as $key => $product)
                         <tr>
                             <td>{{ ++$key }}</td>
-                            <td>{{ $product->display_name }}</td>
-                            <td>{{ $product->description }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->category->name ?? null }}</td>
+                            <td>{{ $product->brand->name ?? null }}</td>
+                            <td>{{ $product->mrp }}</td>
+                            <td>{{ $product->selling_price }}</td>
+                            <td>{{ $product->vat }}</td>
+                            <td>{{ $product->quantity }}</td>
+                            <td>{{ $product->status }}</td>
                             <td class="d-flex flex-row">
                                 <div class="ml-2">
                                     <a href="{{ route('admins.permissions.edit', $product->id) }}" class="btn btn-success btn-sm">
@@ -49,23 +61,25 @@
                     @endforeach
                 </tbody>
             </table>
+            @if ($products->hasPages())
+                {{ $products->links() }}
+            @endif
         </div>
     </div>
 @endsection
 
 @section('css')
     {{-- cdn link for data table --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css"> --}}
 @endsection
 
 @push('scripts')
     {{-- cdn link for data table --}}
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-
+    {{-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script> --}}
     <script>
         $(document).ready( function () {
             // for data table
-            $('#products_table').DataTable();
+            // $('#products_table').DataTable();
             // product delete button event
             // $(".display").on("click", '.btn_permission_delete', function(){
             //     var permissionID = $(this).data('permission_id');
