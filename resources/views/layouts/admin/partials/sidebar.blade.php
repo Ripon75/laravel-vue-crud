@@ -20,11 +20,6 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -34,7 +29,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             @if (Auth::user())
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-white collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('admins.index') }}">Admins</a>
                     <a class="collapse-item" href="{{ route('admins.roles.index') }}">Roles</a>
                     <a class="collapse-item" href="{{ route('admins.permissions.index') }}">Permissions</a>
@@ -46,24 +41,17 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Addons
-    </div>
-
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
+            <span>Porducts</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Login Screens:</h6>
-                <a class="collapse-item" href="login.html">Login</a>
-                <a class="collapse-item" href="register.html">Register</a>
-                <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                <a class="collapse-item" href="{{ route('admins.products.index') }}">Products</a>
+                <a class="collapse-item" href="{{ route('admins.products.bulk.upload') }}">Bulk Upload</a>
                 <div class="collapse-divider"></div>
             </div>
         </div>

@@ -1,0 +1,11 @@
+Product Name,Category Name,Brand Name,MRP,Selling Price,Tax,Quantity,Status,Description
+Product 1,Category 1,Brand 1,300,350,5,100,active,Product Description
+Product 2,Category 1,Brand 1,400,450,5,100,inactive,Product Description
+Product 3,Category 3,Brand 1,500,550,5,100,active,Product Description
+Product 4,Category 4,Brand 2,600,650,0,100,active,Product Description
+Product 5,Category 5,Brand 2,700,750,10,100,inactive,Product Description
+Product 6,Category 2,Brand 2,800,850,5,100,inactive,Product Description
+Product 7,Category 4,Brand 3,900,950,10,100,active,Product Description
+Product 8,Category 3,Brand 3,420,450,0,100,active,Product Description
+Product 9,Category 1,Brand 3,310,350,5,100,active,Product Description
+Product 10,Category 2,Brand 2,520,600,5,100,inactive,Product Description

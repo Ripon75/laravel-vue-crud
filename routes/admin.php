@@ -30,4 +30,7 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::get('/{id}',            [AuthController::class, 'adminEdit'])->name('edit');
     Route::delete('/destroy/{id}', [AuthController::class, 'adminDestroy'])->name('destroy');
     Route::put('/{id}',            [AuthController::class, 'adminUpdate'])->name('update');
+    // Product bulk upload
+    Route::get('/products/bulk/upload',  [ProductController::class, 'productBulkCreate'])->name('products.bulk.upload');
+    Route::post('/products/bulk/upload', [ProductController::class, 'productBulkStore'])->name('products.bulk.store');
 });
