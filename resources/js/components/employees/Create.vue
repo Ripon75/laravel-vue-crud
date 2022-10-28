@@ -87,8 +87,14 @@
                                     </Datepicker>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mt-4">
+                                    <button @click="dateFormate()" type="submit" class="btn btn-primary float-end">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <button @click="dateFormate()" type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>

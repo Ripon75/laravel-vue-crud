@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
-use App\Http\Resources\EmployeeCollection;
-use App\Http\Resources\EmployeeResource;
-use Illuminate\Http\Request;
 use App\Models\Employee;
+use Illuminate\Http\Request;
 use App\UtilClass\CommonUtils;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\EmployeeResource;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\EmployeeCollection;
 
 class EmployeeController extends Controller
 {

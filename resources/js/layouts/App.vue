@@ -4,7 +4,7 @@
             <div class="col-md-10 offset-1">
                  <nav class="navbar navbar-expand-lg navbar-light bg-light m-2">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Navbar</a>
+                        <a class="navbar-brand" href="#">Home</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -18,20 +18,29 @@
                                 <li class="nav-item">
                                     <router-link class="nav-link" :to="{name: 'ImageIndex'}">Images</router-link>
                                 </li>
-                                <!-- <li class="nav-item dropdown">
+                                <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         Dropdown
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
                                         <li>
-                                            <hr class="dropdown-divider">
+                                            <router-link class="dropdown-item" :to="{name: 'Login'}">
+                                                Login
+                                            </router-link>
                                         </li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                        <li>
+                                            <router-link class="dropdown-item" :to="{name: 'Register'}">
+                                                Register
+                                            </router-link>
+                                        </li>
+                                        <li>
+                                            <router-link class="dropdown-item" :to="{name: 'Logout'}">
+                                                Logout
+                                            </router-link>
+                                        </li>
                                     </ul>
-                                </li> -->
+                                </li>
                             </ul>
                             <!-- <form class="d-flex">
                                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

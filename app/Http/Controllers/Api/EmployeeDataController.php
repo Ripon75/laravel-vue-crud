@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Department;
-use App\Models\Country;
 use App\Models\State;
+use App\Models\Country;
+use App\Models\Department;
+use Illuminate\Http\Request;
 use App\UtilClass\CommonUtils;
+use App\Http\Controllers\Controller;
 
 class EmployeeDataController extends Controller
 {

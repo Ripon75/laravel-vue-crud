@@ -6,8 +6,26 @@ import EmployeeEdit from './components/employees/Edit';
 import ImageIndex from './components/images/Index';
 import ImageCreate from './components/images/Create';
 import ImageEdit from './components/images/Edit';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 
 const routes = [
+    // auth route
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    },
+    {
+        path: '/logout',
+        name: 'Logout',
+        // component: Login
+    },
     // route for employees
     {
         path: '/employees',

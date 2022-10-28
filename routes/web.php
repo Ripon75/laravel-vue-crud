@@ -64,7 +64,7 @@ Route::get('/bkash/payment/execute', function() {
     return $bakash->executePayment();
 });
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
+// Route::get('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('{any}', function () {
     return view('welcome');
