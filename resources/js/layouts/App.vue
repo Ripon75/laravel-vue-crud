@@ -4,7 +4,8 @@
             <div class="col-md-10 offset-1">
                  <nav class="navbar navbar-expand-lg navbar-light bg-light m-2">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Home</a>
+                        <!-- <a class="navbar-brand" href="#">Home</a> -->
+                         <router-link class="nav-link" :to="{name: 'Home'}">Home</router-link>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -36,9 +37,7 @@
                                             </router-link>
                                         </li>
                                         <li>
-                                            <router-link class="dropdown-item" :to="{name: 'Logout'}">
-                                                Logout
-                                            </router-link>
+                                            <button class="dropdown-item" @click="logout">Logout</button>
                                         </li>
                                     </ul>
                                 </li>
@@ -57,6 +56,11 @@
 </template>
 <script>
 export default {
-    
+    methods: {
+        logout() {
+            localStorage.removeItem('token');
+            this.$router.push({name: 'Login'});
+        }
+    },
 }
 </script>

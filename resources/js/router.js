@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import Home from './components/Home';
 import EmployeeIndex from './components/employees/Index';
 import EmployeeCreate from './components/employees/Create';
 import EmployeeEdit from './components/employees/Edit';
@@ -10,6 +11,11 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 
 const routes = [
+    {
+        path: '/',
+        name: 'Home',
+        component: Home
+    },
     // auth route
     {
         path: '/register',
