@@ -50,9 +50,15 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->username ?? '' }}</span>
-                <img class="img-profile rounded-circle"
-                    src="{{ asset('images/profile/profile2.png') }}">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    {{ Auth::user()->username ?? '' }}
+                </span>
+                @if (Auth::user())
+                    <img class="img-profile rounded-circle"
+                        src="{{ asset('uploadImages/profile/profile2.png') }}">
+                @else
+                    <span><i class="fa-solid fa-circle-user"></i></span>
+                @endif
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -68,7 +74,6 @@
                         Login
                     </a>
                 @endif
-                {{-- <div class="dropdown-divider"></div> --}}
             </div>
         </li>
     </ul>

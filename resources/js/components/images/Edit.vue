@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         Image Update
-                        <router-link class="btn btn-success btn-sm float-end" :to="{name:'ImageIndex'}">All Employee
+                        <router-link class="btn btn-success btn-sm float-end" :to="{name:'ImageIndex'}">All Image
                         </router-link>
                     </div>
                     <div class ="card-body">

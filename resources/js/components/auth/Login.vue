@@ -49,16 +49,21 @@ export default {
         return {
             form: {
                 email: '',
-                psssword: '',
+                password: '',
                 remember_me: ''
-            }
+            },
+            errors: []
         }
     },
     methods: {
         login() {
             axios.post('/api/login', this.form)
             .then(res => {
-                console.log(res);
+                if (res.data.success) {
+                    localStorage.setItem('token', res.data.result);
+                } else {
+                    this.errors = res.data.msg;
+                }
             })
             .catch(err => {
                 console.log(err);

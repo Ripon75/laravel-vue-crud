@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\UtilClasses\CommonUtils;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,6 +45,16 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        return $request->all();
+        $email    = $request->input('email', null);
+        $password = $request->input('password', null);
+        $remember = $request->input('remember_me', false);
+
+        if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
+            $user = Auth::user();
+            $token = $user->createToken('myToken')->plainTextToken;
+            return CommonUtils::response($token, 'User login successfully');
+        } else {
+            return CommonUtils::error(null, 'User credential does not match');
+        }
     }
 }

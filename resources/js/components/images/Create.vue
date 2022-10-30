@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header">
                         Image Create
-                        <router-link class="btn btn-success btn-sm float-end" :to="{name:'ImageIndex'}">All Employee
+                        <router-link class="btn btn-success btn-sm float-end" :to="{name:'ImageIndex'}">All Image
                         </router-link>
                     </div>
                     <div class ="card-body">
@@ -62,7 +62,8 @@ export default {
             formData.append('img_src', this.form.img_src);
             axios.post('/api/images', formData)
             .then((res) => {
-                if (res.data.code == 200) {
+                console.log(res);
+                if (res.data.success) {
                     this.$toast.success(res.data.msg);
                     this.$router.push({name: 'ImageIndex'});
                 }

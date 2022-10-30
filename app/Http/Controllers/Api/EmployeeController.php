@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
-use App\UtilClass\CommonUtils;
+use App\UtilClasses\CommonUtils;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\EmployeeResource;
 use Illuminate\Support\Facades\Validator;

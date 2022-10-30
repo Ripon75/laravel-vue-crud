@@ -19740,15 +19740,22 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         email: '',
-        psssword: '',
+        password: '',
         remember_me: ''
-      }
+      },
+      errors: []
     };
   },
   methods: {
     login: function login() {
+      var _this = this;
+
       axios.post('/api/login', this.form).then(function (res) {
-        console.log(res);
+        if (res.data.success) {
+          localStorage.setItem('token', res.data.result);
+        } else {
+          _this.errors = res.data.msg;
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -19842,8 +19849,10 @@ __webpack_require__.r(__webpack_exports__);
     getCountries: function getCountries() {
       var _this = this;
 
-      axios.get('/api/employees/countries').then(function (response) {
-        _this.countries = response.data.result;
+      axios.get('/api/employees/countries').then(function (res) {
+        if (res.data.success) {
+          _this.countries = res.data.result;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -19851,8 +19860,10 @@ __webpack_require__.r(__webpack_exports__);
     getStates: function getStates() {
       var _this2 = this;
 
-      axios.get('/api/employees/' + this.form.country_id + '/states').then(function (response) {
-        _this2.states = response.data.result;
+      axios.get('/api/employees/' + this.form.country_id + '/states').then(function (res) {
+        if (res.data.success) {
+          _this2.states = res.data.result;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -19860,8 +19871,10 @@ __webpack_require__.r(__webpack_exports__);
     getCities: function getCities() {
       var _this3 = this;
 
-      axios.get('/api/employees/' + this.form.state_id + '/cities').then(function (response) {
-        _this3.cities = response.data.result;
+      axios.get('/api/employees/' + this.form.state_id + '/cities').then(function (res) {
+        if (res.data.success) {
+          _this3.cities = res.data.result;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -19869,8 +19882,10 @@ __webpack_require__.r(__webpack_exports__);
     getDepartment: function getDepartment() {
       var _this4 = this;
 
-      axios.get('/api/employees/departments').then(function (response) {
-        _this4.departments = response.data.result;
+      axios.get('/api/employees/departments').then(function (res) {
+        if (res.data.success) {
+          _this4.departments = res.data.result;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -20102,7 +20117,9 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().mixin({
           search_key: this.search_key
         }
       }).then(function (res) {
-        _this.employees = res.data.result;
+        if (res.success) {
+          _this.employees = res.data.result;
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -20191,7 +20208,9 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.form.name);
       formData.append('img_src', this.form.img_src);
       axios.post('/api/images', formData).then(function (res) {
-        if (res.data.code == 200) {
+        console.log(res);
+
+        if (res.data.success) {
           _this2.$toast.success(res.data.msg);
 
           _this2.$router.push({
@@ -20327,7 +20346,9 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().mixin({
       var _this = this;
 
       axios.get('/api/images').then(function (res) {
-        _this.result = res.data.result;
+        if (res.data.success) {
+          _this.result = res.data.result;
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -21540,7 +21561,7 @@ var _hoisted_5 = {
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Image Create ");
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("All Employee ");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("All Image ");
 
 var _hoisted_8 = {
   "class": "card-body"
@@ -21662,7 +21683,7 @@ var _hoisted_5 = {
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Image Update ");
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("All Employee ");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("All Image ");
 
 var _hoisted_8 = {
   "class": "card-body"
@@ -21861,7 +21882,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.name), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-      src: "public/images/".concat(data.img_src),
+      src: "uploadImages/products/".concat(data.img_src),
       style: {
         "width": "100px",
         "height": "80px"
@@ -21972,7 +21993,7 @@ var _hoisted_12 = {
   "class": "nav-item"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Images");
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Images ");
 
 var _hoisted_14 = {
   "class": "nav-item dropdown"

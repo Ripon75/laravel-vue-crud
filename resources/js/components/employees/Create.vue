@@ -138,8 +138,10 @@ export default {
     methods: {
         getCountries() {
             axios.get('/api/employees/countries')
-            .then((response) => {
-                this.countries = response.data.result;
+            .then((res) => {
+                if (res.data.success) {
+                    this.countries = res.data.result;
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -147,8 +149,10 @@ export default {
         },
         getStates() {
             axios.get('/api/employees/'+this.form.country_id + '/states')
-            .then((response) => {
-                this.states = response.data.result;
+            .then((res) => {
+                if (res.data.success) {
+                    this.states = res.data.result;
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -156,8 +160,10 @@ export default {
         },
         getCities() {
             axios.get('/api/employees/'+this.form.state_id + '/cities')
-            .then((response) => {
-                this.cities = response.data.result;
+            .then((res) => {
+                if (res.data.success) {
+                    this.cities = res.data.result;
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -165,8 +171,10 @@ export default {
         },
         getDepartment() {
             axios.get('/api/employees/departments')
-            .then((response) => {
-                this.departments = response.data.result;
+            .then((res) => {
+                if (res.data.success) {
+                    this.departments = res.data.result;
+                }
             })
             .catch((error) => {
                 console.log(error);

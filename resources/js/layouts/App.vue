@@ -16,7 +16,8 @@
                                     <router-link class="nav-link" :to="{name: 'EmployeeIndex'}">Employees</router-link>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link class="nav-link" :to="{name: 'ImageIndex'}">Images</router-link>
+                                    <router-link class="nav-link" :to="{name:'ImageIndex'}">Images
+                                    </router-link>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

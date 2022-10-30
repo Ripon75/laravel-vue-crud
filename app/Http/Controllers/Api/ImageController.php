@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\UtilClass\CommonUtils;
-use App\Models\Image;
 use File;
+use App\Models\Image;
+use Illuminate\Http\Request;
+use App\UtilClasses\CommonUtils;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class ImageController extends Controller
 {
@@ -53,7 +53,7 @@ class ImageController extends Controller
             $file = $request->file('img_src', null);
             $ext  = $file->extension();
             $name = time().'.'.$ext;
-            $file->move('public/images', $name);
+            $file->move('uploadImages/products', $name);
 
             $imageObj->img_src = $name;
         }
@@ -92,7 +92,7 @@ class ImageController extends Controller
         
         if ($request->hasFile('img_src')) {
             $oldImage = $image->img_src;
-            $oldImagePath = 'public/images/'. $oldImage;
+            $oldImagePath = 'uploadImages/products'. $oldImage;
             if ($oldImagePath) {
                 File::delete($oldImagePath);
             }
@@ -100,7 +100,7 @@ class ImageController extends Controller
             $file = $request->file('img_src', null);
             $ext  = $file->extension();
             $name = time().'.'.$ext;
-            $file->move('public/images/', $name);
+            $file->move('uploadImages/products', $name);
 
             $image->img_src = $name;
         }

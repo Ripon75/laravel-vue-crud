@@ -108,8 +108,9 @@ export default {
                 }
             })
             .then(res => {
-
-                this.employees = res.data.result;
+                if (res.success) {
+                    this.employees = res.data.result;
+                }
             })
             .catch(error => {
                 console.log(error);

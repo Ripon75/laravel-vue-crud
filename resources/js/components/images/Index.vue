@@ -33,7 +33,7 @@
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ data.name }}</td>
                                     <td>
-                                        <img :src="`public/images/${data.img_src}`" style="width:100px; height:80px;">
+                                        <img :src="`uploadImages/products/${data.img_src}`" style="width:100px; height:80px;">
                                     </td>
                                     <td>
                                         <router-link :to="{name: 'ImageEdit', params: {id: data.id}}"
@@ -87,7 +87,9 @@ export default {
         getImage() {
             axios.get('/api/images')
             .then(res => {
-                this.result = res.data.result;
+                if (res.data.success) {
+                    this.result = res.data.result;
+                }
             })
             .catch(err => {
                 console.log(err);
