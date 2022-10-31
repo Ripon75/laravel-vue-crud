@@ -19803,13 +19803,20 @@ __webpack_require__.r(__webpack_exports__);
         email: '',
         psssword: '',
         password_confirmation: ''
-      }
+      },
+      errors: []
     };
   },
   methods: {
     register: function register() {
+      var _this = this;
+
       axios.post('/api/register', this.form).then(function (res) {
-        console.log(res);
+        if (res.data.success) {
+          console.log(res.data);
+        } else {
+          _this.errors = res.data.msg;
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -20640,45 +20647,57 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_11 = {
-  "class": "col-md-6"
+  key: 0,
+  "class": "text-danger"
 };
 var _hoisted_12 = {
+  "class": "col-md-6"
+};
+var _hoisted_13 = {
   "class": "mb-3"
 };
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label"
 }, "Email", -1
 /* HOISTED */
 );
 
-var _hoisted_14 = {
+var _hoisted_15 = {
+  key: 0,
+  "class": "text-danger"
+};
+var _hoisted_16 = {
   "class": "col-md-6"
 };
-var _hoisted_15 = {
+var _hoisted_17 = {
   "class": "mb-3"
 };
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label"
 }, "Password", -1
 /* HOISTED */
 );
 
-var _hoisted_17 = {
+var _hoisted_19 = {
+  key: 0,
+  "class": "text-danger"
+};
+var _hoisted_20 = {
   "class": "col-md-6"
 };
-var _hoisted_18 = {
+var _hoisted_21 = {
   "class": "mb-3"
 };
 
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label"
 }, "Confirm Password", -1
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-md-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-4"
@@ -20702,7 +20721,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]]), $data.errors.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.name[0]), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "form-control",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
@@ -20710,7 +20731,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]]), $data.errors.email ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.email[0]), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     "class": "form-control",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
@@ -20718,7 +20741,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]]), $data.errors.password ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.password[0]), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "password",
     "class": "form-control",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
@@ -20726,7 +20751,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password_confirmation]])])]), _hoisted_20])], 32
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password_confirmation]])])]), _hoisted_23])], 32
   /* HYDRATE_EVENTS */
   )])])])])]);
 }
@@ -22230,20 +22255,25 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [{
   path: '/',
   name: 'Home',
-  component: _components_Home__WEBPACK_IMPORTED_MODULE_0__["default"]
+  component: _components_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
+  meta: {
+    requestAuth: true
+  }
 }, // auth route
 {
   path: '/register',
   name: 'Register',
-  component: _components_auth_Register__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_auth_Register__WEBPACK_IMPORTED_MODULE_7__["default"],
+  meta: {
+    requestAuth: false
+  }
 }, {
   path: '/login',
   name: 'Login',
-  component: _components_auth_Login__WEBPACK_IMPORTED_MODULE_8__["default"]
-}, {
-  path: '/logout',
-  name: 'Logout' // component: Login
-
+  component: _components_auth_Login__WEBPACK_IMPORTED_MODULE_8__["default"],
+  meta: {
+    requestAuth: false
+  }
 }, // route for employees
 {
   path: '/employees',
@@ -22274,6 +22304,19 @@ var routes = [{
 var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_9__.createRouter)({
   history: (0,vue_router__WEBPACK_IMPORTED_MODULE_9__.createWebHistory)(),
   routes: routes
+});
+router.beforeEach(function (to, from) {
+  if (to.meta.requestAuth && !localStorage.getItem('token')) {
+    return {
+      name: 'Login'
+    };
+  }
+
+  if (to.meta.requestAuth == false && localStorage.getItem('token')) {
+    return {
+      name: 'Home'
+    };
+  }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 

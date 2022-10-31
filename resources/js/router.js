@@ -14,23 +14,27 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: {
+            requestAuth: true
+        }
     },
     // auth route
     {
         path: '/register',
         name: 'Register',
-        component: Register
+        component: Register,
+        meta: {
+            requestAuth: false
+        }
     },
     {
         path: '/login',
         name: 'Login',
-        component: Login
-    },
-    {
-        path: '/logout',
-        name: 'Logout',
-        // component: Login
+        component: Login,
+        meta: {
+            requestAuth: false
+        }
     },
     // route for employees
     {
@@ -69,6 +73,15 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes
+});
+
+router.beforeEach((to, from) => {
+    if (to.meta.requestAuth && !localStorage.getItem('token')) {
+        return {name: 'Login'}
+    }
+    if (to.meta.requestAuth == false && localStorage.getItem('token')) {
+        return {name: 'Home'}
+    }
 });
 
 export default router;
