@@ -20234,8 +20234,6 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.form.name);
       formData.append('img_src', this.form.img_src);
       axios.post('/api/images', formData).then(function (res) {
-        console.log(res);
-
         if (res.data.success) {
           _this2.$toast.success(res.data.msg);
 
@@ -20318,7 +20316,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this3.$toast.error(res.data.msg);
         }
-      })["catch"](function (error) {
+      })["catch"](function (err) {
         _this3.$toast.error(err);
       });
     }
@@ -20338,25 +20336,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
+// import Swal from 'sweetalert2'
+ // const Toast = Swal.mixin({
+//   toast: true,
+//   position: 'top-end',
+//   showConfirmButton: false,
+//   timer: 3000,
+//   timerProgressBar: true,
+//   didOpen: (toast) => {
+//     toast.addEventListener('mouseenter', Swal.stopTimer)
+//     toast.addEventListener('mouseleave', Swal.resumeTimer)
+//   }
+// })
 
-
-var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: function didOpen(toast) {
-    toast.addEventListener('mouseenter', (sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().stopTimer));
-    toast.addEventListener('mouseleave', (sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().resumeTimer));
-  }
-});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    'Pagination': laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__["default"]
+    'Pagination': laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
@@ -20380,41 +20376,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().mixin({
       });
     },
     deleteImage: function deleteImage(id) {
-      var _this2 = this;
-
-      sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Delete'
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          // Delete action start
-          axios["delete"]('api/images/' + id).then(function (res) {
-            if (res.data.success) {
-              Toast.fire({
-                icon: 'success',
-                title: res.data.msg
-              });
-            } else {
-              Toast.fire({
-                icon: 'success',
-                title: res.data.msg
-              });
-            }
-
-            _this2.getImage();
-          })["catch"](function (err) {
-            Toast.fire({
-              icon: 'success',
-              title: err
-            });
-          }); // Delete action end
-        }
-      });
+      this.sweetalertNotification('api/images/', id);
     }
   }
 });
@@ -21837,7 +21799,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 32
   /* HYDRATE_EVENTS */
   ), $data.form.img_src ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $data.imgPreview == null ? "public/images/".concat($data.form.img_src) : $data.imgPreview,
+    src: $data.imgPreview == null ? "uploadImages/products/".concat($data.form.img_src) : $data.imgPreview,
     alt: "Image",
     style: {
       "width": "100px",
@@ -22177,15 +22139,68 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
-/* harmony import */ var _layouts_App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layouts/App.vue */ "./resources/js/layouts/App.vue");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _router_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router.js */ "./resources/js/router.js");
+/* harmony import */ var _layouts_App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layouts/App.vue */ "./resources/js/layouts/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
-var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_layouts_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
-app.use(_router_js__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: function didOpen(toast) {
+    toast.addEventListener('mouseenter', (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().stopTimer));
+    toast.addEventListener('mouseleave', (sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().resumeTimer));
+  }
+});
+var myGlobalFunction = {
+  methods: {
+    sweetalertNotification: function sweetalertNotification(url, id) {
+      sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Delete'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          // Delete action start
+          axios["delete"](url + id).then(function (res) {
+            if (res.data.success) {
+              Toast.fire({
+                icon: 'success',
+                title: res.data.msg
+              });
+            } else {
+              Toast.fire({
+                icon: 'success',
+                title: res.data.msg
+              });
+            } // this.getImage();
+
+          })["catch"](function (err) {
+            Toast.fire({
+              icon: 'success',
+              title: err
+            });
+          }); // Delete action end
+        }
+      });
+    }
+  }
+};
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_layouts_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.use(_router_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+app.mixin(myGlobalFunction);
 app.mount('#app');
 
 /***/ }),

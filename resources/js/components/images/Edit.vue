@@ -18,7 +18,7 @@
                                 <label class="form-label">Upload file</label>
                                 <input @change="onFileChange" type="file" class="form-control">
                                 <div class="" v-if="form.img_src">
-                                <img :src="imgPreview == null ? `public/images/${form.img_src}` : imgPreview" alt="Image" style="width:100px; heigth:80px;" class="mt-2">
+                                <img :src="imgPreview == null ? `uploadImages/products/${form.img_src}` : imgPreview" alt="Image" style="width:100px; heigth:80px;" class="mt-2">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
@@ -84,7 +84,7 @@ export default {
                     this.$toast.error(res.data.msg);
                 }
             })
-            .catch((error) => {
+            .catch((err) => {
                 this.$toast.error(err);
             });
         }
