@@ -13,12 +13,18 @@
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
                                 <input type="text" class="form-control" v-model="form.name">
+                                <span v-if="errors.name" class="text-danger">
+                                    {{ errors.name[0] }}
+                                </span>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Upload file</label>
                                 <input @change="onFileChange" type="file" class="form-control">
+                                <span v-if="errors.img_src" class="text-danger">
+                                    {{ errors.img_src[0] }}
+                                </span>
                                 <div class="" v-if="form.img_src">
-                                <img :src="imgPreview" alt="Image" style="width:100px; heigth:80px;" class="mt-2">
+                                    <img :src="imgPreview" alt="Image" style="width:100px; heigth:80px;" class="mt-2">
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -38,7 +44,8 @@ export default {
                 name: '',
                 img_src: ''
             },
-            imgPreview: null
+            imgPreview: null,
+            errors: []
         }
     },
 
@@ -63,12 +70,14 @@ export default {
             axios.post('/api/images', formData)
             .then((res) => {
                 if (res.data.success) {
-                    this.$toast.success(res.data.msg);
                     this.$router.push({name: 'ImageIndex'});
+                    this.showMessage(res.data.msg);
+                } else {
+                    this.errors = res.data.msg;
                 }
             })
             .catch((err) => {
-                this.$toast.error(err);
+                console.log(err);
             });
         }
     }

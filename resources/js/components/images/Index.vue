@@ -40,7 +40,7 @@
                                             class="btn btn-success btn-sm">
                                             Edit
                                         </router-link>
-                                        <button class="btn btn-danger btn-sm m-2" @click="deleteImage(data.id)">
+                                        <button class="btn btn-danger btn-sm m-2" @click="deleteImage(index, data.id)">
                                             Delete
                                         </button>
                                     </td>
@@ -55,20 +55,7 @@
     </div>
 </template>
 <script>
-// import Swal from 'sweetalert2'
 import LaravelVuePagination from 'laravel-vue-pagination';
-
-// const Toast = Swal.mixin({
-//   toast: true,
-//   position: 'top-end',
-//   showConfirmButton: false,
-//   timer: 3000,
-//   timerProgressBar: true,
-//   didOpen: (toast) => {
-//     toast.addEventListener('mouseenter', Swal.stopTimer)
-//     toast.addEventListener('mouseleave', Swal.resumeTimer)
-//   }
-// })
 
 export default {
     components: {
@@ -95,8 +82,8 @@ export default {
                 console.log(err);
             });
         },
-        deleteImage(id) {
-            this.sweetalertNotification('api/images/', id);
+        deleteImage(index, id) {
+            this.sweetalertNotification('api/images/', id, this.result.data, index);
         }
     },
 }

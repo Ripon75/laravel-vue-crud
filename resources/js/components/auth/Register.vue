@@ -76,7 +76,8 @@ export default {
             axios.post('/api/register', this.form)
             .then(res => {
                 if (res.data.success) {
-                    console.log(res.data);
+                    this.$router.push({name: 'Login'});
+                    this.showMessage(res.data.msg);
                 } else {
                     this.errors = res.data.msg; 
                 }

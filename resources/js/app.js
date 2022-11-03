@@ -19,7 +19,13 @@ const Toast = Swal.mixin({
 
 const myGlobalFunction = {
     methods: {
-        sweetalertNotification(url, id) {
+        showMessage(msg){
+            Toast.fire({
+                icon: 'success',
+                title: msg
+            })
+        },
+        sweetalertNotification(url, id, items, index) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -34,23 +40,16 @@ const myGlobalFunction = {
                     axios.delete(url+id)
                     .then(res => {
                         if (res.data.success) {
-                            Toast.fire({
-                              icon: 'success',
-                              title: res.data.msg
-                            })
+                            var msg = res.data.msg;
+                            this.showMessage(msg);
+                            items.splice(index, 1);
                         } else {
-                            Toast.fire({
-                              icon: 'success',
-                              title: res.data.msg
-                            })
+                            var msg = res.data.msg;
+                            this.showMessage(msg);
                         }
-                        // this.getImage();
                     })
                     .catch(err => {
-                        Toast.fire({
-                            icon: 'success',
-                            title: err
-                        })
+                        console.log(err);
                     });
                     // Delete action end
                 }

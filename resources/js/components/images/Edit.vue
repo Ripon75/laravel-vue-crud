@@ -77,15 +77,15 @@ export default {
 
             axios.post('/api/images/' + this.$route.params.id, formData)
             .then((res) => {
-                this.$router.push({name: 'ImageIndex'});
                 if (res.data.success) {
-                    this.$toast.success(res.data.msg);
+                    this.$router.push({name: 'ImageIndex'});
+                    this.showMessage(res.data.msg);
                 } else {
-                    this.$toast.error(res.data.msg);
+                    this.showMessage(res.data.msg);
                 }
             })
             .catch((err) => {
-                this.$toast.error(err);
+                console.log(err);
             });
         }
     }

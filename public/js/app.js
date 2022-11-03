@@ -19772,6 +19772,8 @@ __webpack_require__.r(__webpack_exports__);
           _this.$router.push({
             name: 'Home'
           });
+
+          _this.showMessage(res.data.msg);
         } else {
           _this.errors = res.data.msg;
         }
@@ -19813,7 +19815,11 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/register', this.form).then(function (res) {
         if (res.data.success) {
-          console.log(res.data);
+          _this.$router.push({
+            name: 'Login'
+          });
+
+          _this.showMessage(res.data.msg);
         } else {
           _this.errors = res.data.msg;
         }
@@ -20208,7 +20214,8 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         img_src: ''
       },
-      imgPreview: null
+      imgPreview: null,
+      errors: []
     };
   },
   methods: {
@@ -20235,14 +20242,16 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('img_src', this.form.img_src);
       axios.post('/api/images', formData).then(function (res) {
         if (res.data.success) {
-          _this2.$toast.success(res.data.msg);
-
           _this2.$router.push({
             name: 'ImageIndex'
           });
+
+          _this2.showMessage(res.data.msg);
+        } else {
+          _this2.errors = res.data.msg;
         }
       })["catch"](function (err) {
-        _this2.$toast.error(err);
+        console.log(err);
       });
     }
   }
@@ -20307,17 +20316,17 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('name', this.form.name);
       formData.append('img_src', this.form.img_src);
       axios.post('/api/images/' + this.$route.params.id, formData).then(function (res) {
-        _this3.$router.push({
-          name: 'ImageIndex'
-        });
-
         if (res.data.success) {
-          _this3.$toast.success(res.data.msg);
+          _this3.$router.push({
+            name: 'ImageIndex'
+          });
+
+          _this3.showMessage(res.data.msg);
         } else {
-          _this3.$toast.error(res.data.msg);
+          _this3.showMessage(res.data.msg);
         }
       })["catch"](function (err) {
-        _this3.$toast.error(err);
+        console.log(err);
       });
     }
   }
@@ -20337,18 +20346,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.es.js");
-// import Swal from 'sweetalert2'
- // const Toast = Swal.mixin({
-//   toast: true,
-//   position: 'top-end',
-//   showConfirmButton: false,
-//   timer: 3000,
-//   timerProgressBar: true,
-//   didOpen: (toast) => {
-//     toast.addEventListener('mouseenter', Swal.stopTimer)
-//     toast.addEventListener('mouseleave', Swal.resumeTimer)
-//   }
-// })
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -20375,8 +20372,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(err);
       });
     },
-    deleteImage: function deleteImage(id) {
-      this.sweetalertNotification('api/images/', id);
+    deleteImage: function deleteImage(index, id) {
+      this.sweetalertNotification('api/images/', id, this.result.data, index);
     }
   }
 });
@@ -21618,22 +21615,30 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_11 = {
+  key: 0,
+  "class": "text-danger"
+};
+var _hoisted_12 = {
   "class": "mb-3"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "form-label"
 }, "Upload file", -1
 /* HOISTED */
 );
 
-var _hoisted_13 = {
+var _hoisted_14 = {
   key: 0,
+  "class": "text-danger"
+};
+var _hoisted_15 = {
+  key: 1,
   "class": ""
 };
-var _hoisted_14 = ["src"];
+var _hoisted_16 = ["src"];
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "btn btn-primary"
 }, "Submit", -1
@@ -21668,7 +21673,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.name]]), $data.errors.name ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.name[0]), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     onChange: _cache[1] || (_cache[1] = function () {
       return $options.onFileChange && $options.onFileChange.apply($options, arguments);
     }),
@@ -21676,7 +21683,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control"
   }, null, 32
   /* HYDRATE_EVENTS */
-  ), $data.form.img_src ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  ), $data.errors.img_src ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.errors.img_src[0]), 1
+  /* TEXT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.form.img_src ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     src: $data.imgPreview,
     alt: "Image",
     style: {
@@ -21686,7 +21695,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-2"
   }, null, 8
   /* PROPS */
-  , _hoisted_14)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_15], 32
+  , _hoisted_16)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_17], 32
   /* HYDRATE_EVENTS */
   )])])])])]);
 }
@@ -21950,7 +21959,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "btn btn-danger btn-sm m-2",
       onClick: function onClick($event) {
-        return $options.deleteImage(data.id);
+        return $options.deleteImage(index, data.id);
       }
     }, " Delete ", 8
     /* PROPS */
@@ -22162,7 +22171,15 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().mixin({
 });
 var myGlobalFunction = {
   methods: {
-    sweetalertNotification: function sweetalertNotification(url, id) {
+    showMessage: function showMessage(msg) {
+      Toast.fire({
+        icon: 'success',
+        title: msg
+      });
+    },
+    sweetalertNotification: function sweetalertNotification(url, id, items, index) {
+      var _this = this;
+
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default().fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -22176,22 +22193,18 @@ var myGlobalFunction = {
           // Delete action start
           axios["delete"](url + id).then(function (res) {
             if (res.data.success) {
-              Toast.fire({
-                icon: 'success',
-                title: res.data.msg
-              });
-            } else {
-              Toast.fire({
-                icon: 'success',
-                title: res.data.msg
-              });
-            } // this.getImage();
+              var msg = res.data.msg;
 
+              _this.showMessage(msg);
+
+              items.splice(index, 1);
+            } else {
+              var msg = res.data.msg;
+
+              _this.showMessage(msg);
+            }
           })["catch"](function (err) {
-            Toast.fire({
-              icon: 'success',
-              title: err
-            });
+            console.log(err);
           }); // Delete action end
         }
       });

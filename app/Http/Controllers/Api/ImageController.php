@@ -22,7 +22,7 @@ class ImageController extends Controller
             $imageObj = Image::where('name', $searchKey);
         }
 
-        $imageObj = $imageObj->paginate($paginate);
+        $imageObj = $imageObj->paginate(2);
 
         if (count($imageObj) > 0) {
             return CommonUtils::response($imageObj, 'All product', 200);
@@ -36,6 +36,9 @@ class ImageController extends Controller
         $validator = Validator::make($request->all(), [
             'name'    => ['required'],
             'img_src' => ['required', 'image']
+        ],
+        [
+            'img_src.required' => 'The image field is required.'
         ]);
 
         if ($validator->stopOnFirstFailure()->fails()) {
@@ -43,7 +46,7 @@ class ImageController extends Controller
         }
 
 
-        $name = $request->input('name');
+        $name = $request->input('name', null);
 
         $imageObj = new Image();
 

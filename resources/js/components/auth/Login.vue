@@ -62,6 +62,7 @@ export default {
                 if (res.data.success) {
                     localStorage.setItem('token', res.data.result);
                     this.$router.push({name: 'Home'});
+                    this.showMessage(res.data.msg);
                 } else {
                     this.errors = res.data.msg;
                 }
