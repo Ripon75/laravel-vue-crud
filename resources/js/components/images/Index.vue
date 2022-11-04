@@ -19,7 +19,7 @@
                         </router-link>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -33,7 +33,7 @@
                                     <td>{{ index + 1 }}</td>
                                     <td>{{ data.name }}</td>
                                     <td>
-                                        <img :src="`uploadImages/products/${data.img_src}`" style="width:100px; height:80px;">
+                                        <img :src="`uploadImages/products/${data.img_src}`" style="width:70px; height:60px;">
                                     </td>
                                     <td>
                                         <router-link :to="{name: 'ImageEdit', params: {id: data.id}}"
@@ -47,13 +47,14 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <Pagination :data="result" @pagination-change-page="getImage" />
                     </div>
-                    <Pagination :data="result" @pagination-change-page="getImage" />
                 </div>
             </div>
         </div>
     </div>
 </template>
+
 <script>
 import LaravelVuePagination from 'laravel-vue-pagination';
 
@@ -71,8 +72,8 @@ export default {
         this.getImage();
     },
     methods: {
-        getImage() {
-            axios.get('/api/images')
+        getImage(page = 1) {
+            axios.get('/api/images?page=' + page)
             .then(res => {
                 if (res.data.success) {
                     this.result = res.data.result;

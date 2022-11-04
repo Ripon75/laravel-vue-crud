@@ -9,6 +9,7 @@ import ImageCreate from './components/images/Create';
 import ImageEdit from './components/images/Edit';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import store from './store';
 
 const routes = [
     {
@@ -76,10 +77,10 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from) => {
-    if (to.meta.requestAuth && !localStorage.getItem('token')) {
+    if (to.meta.requestAuth && store.getters.getToken == 0) {
         return {name: 'Login'}
     }
-    if (to.meta.requestAuth == false && localStorage.getItem('token')) {
+    if (to.meta.requestAuth == false && store.getters.getToken != 0) {
         return {name: 'Home'}
     }
 });

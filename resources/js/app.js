@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import Swal from 'sweetalert2'
 import router from './router.js';
 import App from './layouts/App.vue';
+import store from './store'
 
 const Toast = Swal.mixin({
   toast: true,
@@ -61,5 +62,6 @@ const myGlobalFunction = {
 const app = createApp(App)
 
 app.use(router)
+app.use(store)
 app.mixin(myGlobalFunction)
 app.mount('#app')

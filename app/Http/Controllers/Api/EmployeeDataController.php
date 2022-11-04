@@ -6,7 +6,7 @@ use App\Models\State;
 use App\Models\Country;
 use App\Models\Department;
 use Illuminate\Http\Request;
-use App\UtilClass\CommonUtils;
+use App\UtilClasses\CommonUtils;
 use App\Http\Controllers\Controller;
 
 class EmployeeDataController extends Controller

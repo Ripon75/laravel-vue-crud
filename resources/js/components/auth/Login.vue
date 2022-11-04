@@ -60,7 +60,7 @@ export default {
             axios.post('/api/login', this.form)
             .then(res => {
                 if (res.data.success) {
-                    localStorage.setItem('token', res.data.result);
+                    this.$store.dispatch('setToken', res.data.result)
                     this.$router.push({name: 'Home'});
                     this.showMessage(res.data.msg);
                 } else {

@@ -71,7 +71,7 @@ class EmployeeController extends Controller
         $employeeObj->city_id       = $cityId;
         $employeeObj->zip_code      = $zipCode;
         $employeeObj->birthdate     = $birthdate;
-        $employeeObj->date_hire     = $dateHire;
+        $employeeObj->date_hired    = $dateHire;
         $res = $employeeObj->save();
         if ($res) {
             return CommonUtils::response($employeeObj, 'Employee create successfully', 200);

@@ -5,7 +5,9 @@
                  <nav class="navbar navbar-expand-lg navbar-light bg-light m-2">
                     <div class="container-fluid">
                         <!-- <a class="navbar-brand" href="#">Home</a> -->
-                         <router-link class="nav-link" :to="{name: 'Home'}">Home</router-link>
+                         <router-link class="nav-link" :to="{name: 'Home'}">
+                            Home
+                        </router-link>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -27,17 +29,21 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>
-                                            <router-link class="dropdown-item" :to="{name: 'Login'}">
+                                            <router-link class="dropdown-item" :to="{name: 'Login'}" 
+                                                v-if="$store.getters.getToken == 0">
                                                 Login
                                             </router-link>
                                         </li>
                                         <li>
-                                            <router-link class="dropdown-item" :to="{name: 'Register'}">
+                                            <router-link class="dropdown-item" :to="{name: 'Register'}"
+                                                v-if="$store.getters.getToken == 0">
                                                 Register
                                             </router-link>
                                         </li>
                                         <li>
-                                            <button class="dropdown-item" @click="logout">Logout</button>
+                                            <button v-if="$store.getters.getToken != 0" class="dropdown-item" @click="logout">
+                                                Logout
+                                            </button>
                                         </li>
                                     </ul>
                                 </li>
@@ -58,7 +64,8 @@
 export default {
     methods: {
         logout() {
-            localStorage.removeItem('token');
+            // localStorage.removeItem('token');
+            this.$store.dispatch('removedToken')
             this.$router.push({name: 'Login'});
         }
     },

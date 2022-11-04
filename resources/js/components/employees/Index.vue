@@ -16,7 +16,7 @@
                         <router-link class="btn btn-success btn-sm float-end" :to="{name: 'EmployeeCreate'}">Create</router-link>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -67,19 +67,19 @@
 <script>
 import moment from 'moment';
 import LaravelVuePagination from 'laravel-vue-pagination';
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
-const Toast = Swal.mixin({
-  toast: true,
-  position: 'top-end',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
+// const Toast = Swal.mixin({
+//   toast: true,
+//   position: 'top-end',
+//   showConfirmButton: false,
+//   timer: 3000,
+//   timerProgressBar: true,
+//   didOpen: (toast) => {
+//     toast.addEventListener('mouseenter', Swal.stopTimer)
+//     toast.addEventListener('mouseleave', Swal.resumeTimer)
+//   }
+// })
 
 export default {
     components: {
@@ -102,13 +102,12 @@ export default {
     methods: {
         getEmployees(page = 1) {
             axios.get('/api/employees?page=' + page, {
-                // search product
                 params: {
                     search_key: this.search_key
                 }
             })
             .then(res => {
-                if (res.success) {
+                if (res.data.success) {
                     this.employees = res.data.result;
                 }
             })
@@ -122,34 +121,34 @@ export default {
             }
         },
         deleteEmployee(id) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Delete'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    // Delete action start
-                    axios.delete('/api/employees/' + id)
-                    .then(res => {
-                        this.getEmployees();
-                        Toast.fire({
-                              icon: 'success',
-                              title: res.data.msg
-                        })
-                    })
-                    .catch(err => {
-                        Toast.fire({
-                              icon: 'success',
-                              title: err
-                        })
-                    })
-                    // Delete action end
-                }
-            })
+            // Swal.fire({
+            //     title: 'Are you sure?',
+            //     text: "You won't be able to revert this!",
+            //     icon: 'warning',
+            //     showCancelButton: true,
+            //     confirmButtonColor: '#3085d6',
+            //     cancelButtonColor: '#d33',
+            //     confirmButtonText: 'Delete'
+            //     }).then((result) => {
+            //     if (result.isConfirmed) {
+            //         // Delete action start
+            //         axios.delete('/api/employees/' + id)
+            //         .then(res => {
+            //             this.getEmployees();
+            //             Toast.fire({
+            //                   icon: 'success',
+            //                   title: res.data.msg
+            //             })
+            //         })
+            //         .catch(err => {
+            //             Toast.fire({
+            //                   icon: 'success',
+            //                   title: err
+            //             })
+            //         })
+            //         // Delete action end
+            //     }
+            // })
         }
     },
 }
