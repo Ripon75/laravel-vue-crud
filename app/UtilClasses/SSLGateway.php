@@ -20,13 +20,13 @@ class SSLGateway
 
     public function init()
     {
-        $this->endpoint        = config("paymentgateways.ssl.endpoint");
-        $this->storeID         = config("paymentgateways.ssl.store_id");
-        $this->storePassword   = config("paymentgateways.ssl.store_password");
-        $this->callbackSuccess = config('paymentgateways.ssl.callback_success');
-        $this->callbackFail    = config('paymentgateways.ssl.callback_fail');
-        $this->callbackCancel  = config('paymentgateways.ssl.callback_cancel');
-        $this->callbackIPN     = config('paymentgateways.ssl.callback_ipn');
+        $this->endpoint        = config("payment_gateways.ssl.endpoint");
+        $this->storeID         = config("payment_gateways.ssl.store_id");
+        $this->storePassword   = config("payment_gateways.ssl.store_password");
+        $this->callbackSuccess = config('payment_gateways.ssl.callback_success');
+        $this->callbackFail    = config('payment_gateways.ssl.callback_fail');
+        $this->callbackCancel  = config('payment_gateways.ssl.callback_cancel');
+        $this->callbackIPN     = config('payment_gateways.ssl.callback_ipn');
     }
 
     public function requestSession(

@@ -119,4 +119,9 @@ class CallbackController extends Controller
 
         // return view('fail', $statusMessage);
     }
+
+    public function nagadCallback(Request $request)
+    {
+        return $request;
+    }
 }

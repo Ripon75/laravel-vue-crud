@@ -8,3 +8,6 @@ Route::match(['get', 'post'], '/payment/ssl/{type}', [CallbackController::class,
 
 // callback route for bKash
 Route::match(['get', 'post'], '/payment/bkash', [CallbackController::class, 'bkashCallback'])->name('bkash.payment');
+
+// callback route for nagad
+Route::match(['get', 'post'], '/payment/nagad', [CallbackController::class, 'nagadCallback'])->name('nagad.payment');

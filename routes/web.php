@@ -1,6 +1,7 @@
 <?php
 
 use App\UtilClasses\Bkash;
+use App\UtilClasses\Nagad;
 use App\UtilClasses\SMSGateway;
 use App\UtilClasses\SSLGateway;
 use Illuminate\Support\Facades\Route;
@@ -34,34 +35,22 @@ Route::get('/ssl/payment', function() {
     }
 });
 
-// bKash payment gateway tesy
-// get token
-Route::get('/bkash/payment/token', function() {
+// bKash payment gateway test
+Route::get('/bkash/test', function() {
     $bakash = new Bkash();
 
     return $bakash->getToken();
 });
 
-// create payment
-Route::get('/bkash/payment/create', function() {
-    $bakash = new Bkash();
+// Nagad pg test
+Route::get('/nagad/test', function() {
+    $nagad = new Nagad();
 
-    $response = $bakash->createPayment('100', 1, '01764997485');
+    // return $nagad->generateRandomString();
 
-    if ($response['statusCode'] === '0000') {
-        $bkashURL = $response['bkashURL'];
-
-        return redirect()->away($bkashURL);
-    } else {
-        return "Failed";
-    }
-});
-
-// create execute
-Route::get('/bkash/payment/execute', function() {
-    $bakash = new Bkash();
-
-    return $bakash->executePayment();
+    // return $nagad->encryptDataByPublicKey("I Love U");
+    // return $nagad->decryptDataByPrivateKey();
+    return $nagad->nagadPaymentRequest("Medicart1", 100);
 });
 
 // Route::get('/login', [AuthController::class, 'login'])->name('login');

@@ -18,5 +18,13 @@ return [
         "app_key"      => env("BKASH_APP_KEY"),
         "app_secret"   => env("BKASH_APP_SECRET"),
         "callback_url" => env("BKASH_CALLBACK")
+    ],
+
+    "nagad" => [
+        "endpoint"     => env("NAGAD_ENDPOINT"),
+        "merchand_id"  => env("NAGAD_MERCHANT_ID"),
+        "public_key"   => env("NAGAD_PUBLIC_KEY"),
+        "private_key"  => env("NAGAD_PRIVATE_KEY"),
+        "callback_url" => env("NAGAD_CALLBACK")
     ]
 ];

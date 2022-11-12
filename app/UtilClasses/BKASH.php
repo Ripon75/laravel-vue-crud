@@ -21,12 +21,12 @@ class Bkash
 
     public function init()
     {
-        $this->endpoint    = config("paymentgateways.bkash.endpoint");
-        $this->username    = config("paymentgateways.bkash.username");
-        $this->password    = config("paymentgateways.bkash.password");
-        $this->appKey      = config("paymentgateways.bkash.app_key");
-        $this->appSecret   = config("paymentgateways.bkash.app_secret");
-        $this->callbackURL = config("paymentgateways.bkash.callback_url");
+        $this->endpoint    = config("payment_gateways.bkash.endpoint");
+        $this->username    = config("payment_gateways.bkash.username");
+        $this->password    = config("payment_gateways.bkash.password");
+        $this->appKey      = config("payment_gateways.bkash.app_key");
+        $this->appSecret   = config("payment_gateways.bkash.app_secret");
+        $this->callbackURL = config("payment_gateways.bkash.callback_url");
         $this->token       = $this->getToken();
     }
 
