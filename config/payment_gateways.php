@@ -21,10 +21,10 @@ return [
     ],
 
     "nagad" => [
-        "endpoint"     => env("NAGAD_ENDPOINT"),
-        "merchand_id"  => env("NAGAD_MERCHANT_ID"),
-        "public_key"   => env("NAGAD_PUBLIC_KEY"),
-        "private_key"  => env("NAGAD_PRIVATE_KEY"),
-        "callback_url" => env("NAGAD_CALLBACK")
+        "endpoint"           => env("NAGAD_ENDPOINT"),
+        "merchantId"         => env("NAGAD_MERCHANT_ID"),
+        "publicKey"          => env("NAGAD_PUBLIC_KEY"),
+        "merchantPrivateKey" => env("NAGAD_MERCHANT_PRIVATE_KEY"),
+        "callback"           => env("NAGAD_CALLBACK")
     ]
 ];

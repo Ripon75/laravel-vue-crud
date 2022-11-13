@@ -48,8 +48,9 @@ Route::get('/nagad/test', function() {
 
     // return $nagad->generateRandomString();
 
-    // return $nagad->encryptDataByPublicKey("I Love U");
+    // return $nagad->encryptDataWithPublicKey("I Love U");
     // return $nagad->decryptDataByPrivateKey();
+     $_SESSION['orderId'] = "Medicart1";
     return $nagad->nagadPaymentRequest("Medicart1", 100);
 });
 

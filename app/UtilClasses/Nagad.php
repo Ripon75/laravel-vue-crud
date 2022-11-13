@@ -1,8 +1,8 @@
 <?php
-
 namespace App\UtilClasses;
 
-use Illuminate\Support\Facades\Http;
+session_start();
+use Log;
 
 class Nagad
 {
@@ -19,10 +19,10 @@ class Nagad
     public function initConfig()
     {
         $this->endpointUrl        = config("payment_gateways.nagad.endpoint");
-        $this->publicKey          = config("payment_gateways.nagad.public_key");
-        $this->merchantPrivateKey = config("payment_gateways.nagad.private_key");
-        $this->callbackURL        = config("payment_gateways.nagad.callback_url");
-        $this->merchantId         = config("payment_gateways.nagad.merchand_id");
+        $this->publicKey          = config("payment_gateways.nagad.publicKey");
+        $this->merchantPrivateKey = config("payment_gateways.nagad.merchantPrivateKey");
+        $this->callbackURL        = config("payment_gateways.nagad.callback");
+        $this->merchantId         = config("payment_gateways.nagad.merchantId");
     }
 
     public function generateRandomString($length = 40)
