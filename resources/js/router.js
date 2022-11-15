@@ -10,6 +10,7 @@ import ImageEdit from './components/images/Edit';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import store from './store';
+import AdminIndex from './layouts/admin/Index';
 
 const routes = [
     {
@@ -68,6 +69,12 @@ const routes = [
         path: '/images:id',
         name: 'ImageEdit',
         component: ImageEdit
+    },
+    // Admin route
+    {
+        path: '/test/dashboard',
+        name: 'AdminIndex',
+        component: AdminIndex
     }
 ];
 
